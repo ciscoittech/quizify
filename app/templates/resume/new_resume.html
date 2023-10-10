@@ -1,0 +1,97 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Projects New Project {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mt-4">
+        <div class="col-lg-9 col-12 mx-auto position-relative">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                        <i class="material-icons opacity-10">work</i>
+                    </div>
+                    <h6 class="mb-0">Upload and Optimize Resume</h6>
+                </div>
+                <div class="card-body pt-2">
+                    <form method="post" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <div class="input-group input-group-dynamic">
+                            <label for="resume" class="form-label">{{ form.resume.label }}</label>
+                            {{ form.resume(class="form-control") }}
+                        </div>
+                        <div class="input-group input-group-dynamic mt-4">
+                            <label for="job_link" class="form-label">{{ form.job_link.label }}</label>
+                            {{ form.job_link(class="form-control") }}
+                        </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" name="button" class="btn bg-gradient-dark m-0">Process Resume</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %} 
+
+  <script>
+    if (document.getElementById('editor')) {
+      var quill = new Quill('#editor', {
+        theme: 'snow' // Specify theme in configuration
+      });
+    }
+
+    if (document.getElementById('choices-multiple-remove-button')) {
+      var element = document.getElementById('choices-multiple-remove-button');
+      const example = new Choices(element, {
+        removeItemButton: true
+      });
+
+      example.setChoices(
+        [{
+            value: 'One',
+            label: 'Label One',
+            disabled: true
+          },
+          {
+            value: 'Two',
+            label: 'Label Two',
+            selected: true
+          },
+          {
+            value: 'Three',
+            label: 'Label Three'
+          },
+        ],
+        'value',
+        'label',
+        false,
+      );
+    }
+
+    if (document.querySelector('.datetimepicker')) {
+      flatpickr('.datetimepicker', {
+        allowInput: true
+      }); // flatpickr
+    }
+
+    Dropzone.autoDiscover = false;
+    var drop = document.getElementById('dropzone')
+    var myDropzone = new Dropzone(drop, {
+      url: "/file/post",
+      addRemoveLinks: true
+
+    });
+  </script>
+
+{% endblock javascripts %}

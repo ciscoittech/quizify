@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+</head>
+<body>
+    <form action="/chatbot" method="post">
+        <label for="user_input">You:</label>
+        <input type="text" id="user_input" name="user_input">
+        <input type="submit" value="Send">
+    </form>
+    <div>
+        {% if request.method == 'POST' %}
+        <p>You: {{ user_input }}</p>
+        <p>Assistant: {{ assistant_response }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

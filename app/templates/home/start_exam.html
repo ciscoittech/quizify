@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Template {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container-fluid py-4 d-flex align-items-center min-vh-100">
+  <div class="row w-100">
+      <div class="col-12 d-flex justify-content-center">
+          <div class="card card-frame custom-width">
+              <div class="card-header">
+                  <!-- We'll use a variable for the current question number -->
+                  <h5 class="card-title mb-0">Question {{ question_number }}</h5>
+              </div>
+              <div class="card-body">
+                  <form action="{{ url_for('quiz.start_exam', exam_id=exam.id) }}" method="post">
+                      {{ form.hidden_tag() }}  <!-- Adds CSRF token, etc. -->
+                      <p class="card-text mb-4">{{ current_question.content }}</p>
+                      
+                      {% for subfield in form.choices %}
+                          <div class="form-check mb-2">
+                              {{ subfield }}  <!-- This renders the radio input -->
+                              {{ subfield.label }}  <!-- This renders the label for the radio input -->
+                          </div>
+                      {% endfor %}
+
+                      <div class="d-flex justify-content-between mt-4">
+                          <button type="button" class="btn btn-secondary">Back</button>
+                          <div>
+                              {{ form.submit_next(class="btn btn-primary me-2") }}
+                              {{ form.submit_end(class="btn btn-danger") }}
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+    {% include 'includes/footer.html' %}
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

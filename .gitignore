@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+scripts/
+.env              # environment variables
+.flaskenv         # flask environment variables
+env
+

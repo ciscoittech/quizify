@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exams Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/material-dashboard.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to the Exams Platform</h1>
+        <h2>Vendors and Exams:</h2>
+        <ul>
+            {% for vendor in vendors %}
+            <li>
+                <strong>{{ vendor.name }}</strong>
+                <ul>
+                    {% for exam in vendor.exams %}
+                    <li><a href="{{ url_for('exam_details', exam_id=exam.id) }}">{{ exam.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+</html>

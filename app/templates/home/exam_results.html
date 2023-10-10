@@ -1,0 +1,90 @@
+{% extends "layouts/base.html" %} {% block title %} Template {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<div class="container-fluid py-4">
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header">
+          <h5 class="mb-0">Exam Result</h5>
+          <p class="text-sm mb-0">
+            This is an exam result page. It displays the results of the
+            exam.
+          </p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-flush" id="datatable-basic">
+            <thead class="thead-light">
+              <tr>
+                <th
+                  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                >
+                  Timestamp
+                </th>
+                <th
+                  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                >
+                  Correct Answers
+                </th>
+                <th
+                  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                >
+                  Incorrect Answers
+                </th>
+                <th
+                  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                >
+                  Percentage
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for result in attempts %}
+              <tr>
+                <td class="text-sm font-weight-normal">
+                  {{ result.timestamp }}
+                </td>
+                
+                <td class="text-sm font-weight-normal">{{ result.correct }}</td>
+                <td class="text-sm font-weight-normal">
+                  {{ result.incorrect }}
+                </td>
+                <td class="text-sm font-weight-normal">
+                  {{ result.percentage }}%
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+  const dataTableBasic = new simpleDatatables.DataTable("#datatable-basic", {
+    searchable: false,
+    fixedHeight: true,
+  });
+
+  const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+    searchable: true,
+    fixedHeight: true,
+  });
+</script>
+
+{% endblock javascripts %}
