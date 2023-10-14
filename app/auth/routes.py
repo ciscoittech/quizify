@@ -59,7 +59,7 @@ def register():
         user.set_password(form.password.data)
         user.save()
         flash('Registration successful!', 'success')
-        return redirect(url_for('home/profile'))
+        return redirect(url_for('user.profile'))
     return render_template('accounts/register.html', title='Register', form=form)
 
 @auth.route('/logout')

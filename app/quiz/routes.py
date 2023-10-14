@@ -96,21 +96,31 @@ def exam_results(exam_id):
     # A list to hold all attempts and their statistics
     all_attempts = []
 
+    # Define the passing percentage
+    passing_percentage = 70
+
     for user_exam in user_exams:
         results = Result.objects(user_exam=user_exam)
         total_questions = len(results)
         correct_answers = sum(1 for result in results if result.is_correct)
         incorrect_answers = total_questions - correct_answers
-        certificate = user_exam.certification
-        # percentage = (correct_answers / total_questions) * 100
+        formatted_time = user_exam.timestamp.strftime('%B %d, %Y %H:%M')
+
+        # Check if total_questions is zero
+        if total_questions != 0:
+            user_percentage = (correct_answers / total_questions) * 100
+        else:
+            user_percentage = 0
+
+        certification = user_exam.exam.name  # Fetching the exam name as 'certification'
 
         attempt = {
-            "timestamp": user_exam.timestamp,
+            "timestamp": formatted_time,
             "correct": correct_answers,
             "incorrect": incorrect_answers,
-            # "percentage": percentage,
-            "certificate": certificate
+            "percentage": user_percentage,
+            "certification": certification
         }
         all_attempts.append(attempt)
 
-    return render_template('home/exam_results.html', attempts=all_attempts)
+    return render_template('home/exam_results.html', attempts=all_attempts, passing_percentage=passing_percentage)
