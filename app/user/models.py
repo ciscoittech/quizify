@@ -38,6 +38,9 @@ class UserExam(me.Document):
         # Return True if results count is equal to or greater than the questions count, else return False
         return results_count >= questions_count
 
+    def formatted_timestamp(self):
+        return self.timestamp.strftime('%B %d, %Y %H:%M')
+
 
 class Result(me.Document):
     user_exam = me.ReferenceField(UserExam, required=True, reverse_delete_rule=me.CASCADE)
