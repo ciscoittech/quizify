@@ -19,28 +19,24 @@ class User(UserMixin, me.Document):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-    
+
+
 class UserExam(me.Document):
     user = me.ReferenceField(User, required=True, reverse_delete_rule=me.CASCADE)
     exam = me.ReferenceField(quiz_models.Exam, required=True)
     timestamp = me.DateTimeField(default=datetime.utcnow)  # to track when the user started the exam
     attempt_id = me.SequenceField()
     certification = me.ReferenceField(quiz_models.Exam)
-    
 
-    
-    
-    
     def has_ended(self):
         # Count the number of results associated with this UserExam instance
         results_count = Result.objects(user_exam=self).count()
-        
+
         # Count the number of questions in the exam
         questions_count = len(quiz_models.Question.objects(exam=self.exam))
 
         # Return True if results count is equal to or greater than the questions count, else return False
         return results_count >= questions_count
-
 
 
 class Result(me.Document):

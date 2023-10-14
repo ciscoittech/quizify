@@ -6,13 +6,11 @@ from bson import ObjectId
 from flask import session
 
 
-
-
-
 def reset_exam_session():
     """Resets or removes session variables related to the exam."""
     session.pop('selected_questions', None)
     session.pop('current_question_number', None)
+
 
 def end_exam(user_exam):
     """Handles the end of the exam logic."""
@@ -22,8 +20,8 @@ def end_exam(user_exam):
     user_exam.score = score
     user_exam.finished_at = datetime.utcnow()
     user_exam.save()
-    
-    
+
+
 def get_or_create_user_exam(user, exam):
     user_exam = UserExam.objects(user=user, exam=exam).first()
     if not user_exam:
@@ -31,11 +29,14 @@ def get_or_create_user_exam(user, exam):
         user_exam.save()
     return user_exam
 
+
 def get_selected_questions(exam):
     if 'selected_questions' not in session:
-        all_questions = [question.id for subsection in Subsection.objects(exam=exam) for question in subsection.questions]
+        all_questions = [question.id for subsection in Subsection.objects(exam=exam) for question in
+                         subsection.questions]
         session['selected_questions'] = random.sample([str(q_id) for q_id in all_questions], 3)
     return session['selected_questions']
+
 
 def create_result(user_exam, current_question, selected_answer, is_correct):
     submitted_at = datetime.utcnow()

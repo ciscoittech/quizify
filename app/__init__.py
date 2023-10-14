@@ -1,6 +1,7 @@
 from flask import Flask, session
 from flask_login import LoginManager
 import mongoengine as me
+import certifi
 from app.auth.routes import auth
 from app.user.routes import user  # Adjust this line
 from app.quiz.routes import quiz
@@ -13,11 +14,13 @@ app.register_blueprint(quiz)
 app.config.from_object(Config)
 
 # Connect to the MongoDB database using mongoengine
-me.connect('demoquiz', host='localhost', port=27017)
+# me.connect('demoquiz', host='localhost', port=27017)
+mongo_connection_string = "mongodb+srv://tbattlehunt:jXYtNIFsod1c9doM@mern.h1vq7vp.mongodb.net/demoquiz?ssl=true&ssl_cert_reqs=CERT_NONE&ssl_ca_certs=" + certifi.where()
+me.connect(host=mongo_connection_string)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'user.login'  #
+login_manager.login_view = 'auth.login'  #
 
 @login_manager.user_loader
 def load_user(user_id):

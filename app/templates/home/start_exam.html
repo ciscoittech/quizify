@@ -28,8 +28,9 @@
                       {% endfor %}
 
                       <div class="d-flex justify-content-between mt-4">
-                          <button type="button" class="btn btn-secondary">Back</button>
+                              {{ form.submit_back(class="btn btn-secondary me-2") }}
                           <div>
+
                               {{ form.submit_next(class="btn btn-primary me-2") }}
                               {{ form.submit_end(class="btn btn-danger") }}
                           </div>
