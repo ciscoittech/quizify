@@ -8,3 +8,8 @@ class UpdateProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Update')
+
+
+
+class DeleteForm(FlaskForm):
+    submit = SubmitField('Delete')

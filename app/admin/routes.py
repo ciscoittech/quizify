@@ -2,7 +2,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 from app.quiz.models import Exam
 from app.user import user
-from app.user.forms import UpdateProfileForm
+from app.user.forms import UpdateProfileForm, DeleteForm
 
 
 
@@ -28,3 +28,16 @@ def profile():
 @user.route('/edit_profile')
 def edit_profile():
     return render_template('edit_profile.html')
+
+
+@user.route('/delete/<user_id>', methods=['POST'])
+def delete_user(user_id):
+    form = DeleteForm()
+    if form.validate_on_submit():
+        user_instance = user.objects(id=user_id).first()
+        if user_instance:
+            user_instance.delete()
+            flash('User successfully deleted!', 'success')
+        else:
+            flash('User not found!', 'danger')
+    return redirect(url_for('main.dashboard'))
