@@ -33,6 +33,13 @@
 
                               {{ form.submit_next(class="btn btn-primary me-2") }}
                               {{ form.submit_end(class="btn btn-danger") }}
+                              {% if question %}
+    <a href="{{ url_for('quiz.question_details', question_id=question.id) }}">View Details</a>
+{% else %}
+    <!-- Handle the case where question does not exist -->
+{% endif %}
+
+
                           </div>
                       </div>
                   </form>

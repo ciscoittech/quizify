@@ -1,3 +1,3 @@
 from flask import blueprints
 
-user = blueprints.Blueprint('user', __name__)
+admin = blueprints.Blueprint('admin', __name__)
