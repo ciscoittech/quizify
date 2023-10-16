@@ -1,7 +1,7 @@
 from datetime import datetime
 import random
 from app.quiz.models import Subsection
-from app.user.models import User, Result, UserExam
+from app.admin.models import User, Result, UserExam
 from bson import ObjectId
 from flask import session
 

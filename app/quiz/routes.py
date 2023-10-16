@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import abort, render_template, request, redirect, url_for, session
 from app.quiz.models import Exam, Subsection, Question
 from app.quiz.forms import QuestionForm
-from app.user.models import User, Result, UserExam
+from app.admin.models import User, Result, UserExam
 from bson import ObjectId
 import random
 from app.quiz import quiz
@@ -124,3 +124,16 @@ def exam_results(exam_id):
         all_attempts.append(attempt)
 
     return render_template('home/exam_results.html', attempts=all_attempts, passing_percentage=passing_percentage)
+
+
+@quiz.route('/question_details/<question_id>')
+def question_details(question_id):
+    try:
+        # Fetch the question based on the provided ID
+        question = Question.objects.get(id=question_id)
+    except Exception as e:
+        # If there's an exception (e.g., question not found), trigger an error with a description
+        abort(404, description=str(e))
+
+    # Render the template and pass the question details
+    return render_template('home/question_details.html', question=question)
