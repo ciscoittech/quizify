@@ -15,6 +15,7 @@ def exam():
     # Fetching all vendors and exams for display
     # vendors = Vendor.objects.all()
     exams = Exam.objects.all()
+
     return render_template('home/exam1.html', exams=exams)
 
 
