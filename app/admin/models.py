@@ -1,6 +1,8 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import mongoengine as me
+from mongoengine import signals
+from mongoengine import Document, StringField, BinaryField, BooleanField, DateTimeField, EmbeddedDocument, FloatField, ReferenceField, ObjectIdField, ListField, IntField, EmbeddedDocumentField
 from datetime import datetime
 from app.quiz import models as quiz_models
 
@@ -11,6 +13,8 @@ class User(UserMixin, me.Document):
     password_hash = me.StringField(required=True)
     first_name = me.StringField()
     last_name = me.StringField()
+    created_at = me.DateTimeField(auto_now_add=True)
+    last_modified = me.DateTimeField(auto_now=True)
     # Add a reference to exams taken by the user
     exams_taken = me.ListField(me.ReferenceField('ExamResult'))
 
@@ -21,32 +25,34 @@ class User(UserMixin, me.Document):
         return check_password_hash(self.password_hash, password)
 
 
-class UserExam(me.Document):
-    user = me.ReferenceField(User, required=True, reverse_delete_rule=me.CASCADE)
-    exam = me.ReferenceField(quiz_models.Exam, required=True)
-    timestamp = me.DateTimeField(default=datetime.utcnow)  # to track when the user started the exam
-    attempt_id = me.SequenceField()
-    certification = me.ReferenceField(quiz_models.Exam)
+    @classmethod
+    def pre_delete(cls, sender, document, **kwargs):
+        from quiz.models import UserResponse, Transaction  # Import related models
+        UserResponse.objects(user=document).delete()
+        Transaction.objects(user=document).delete()
 
-    def has_ended(self):
-        # Count the number of results associated with this UserExam instance
-        results_count = Result.objects(user_exam=self).count()
-
-        # Count the number of questions in the exam
-        questions_count = len(quiz_models.Question.objects(exam=self.exam))
-
-        # Return True if results count is equal to or greater than the questions count, else return False
-        return results_count >= questions_count
-
-    def formatted_timestamp(self):
-        return self.timestamp.strftime('%B %d, %Y %H:%M')
+signals.pre_delete.connect(User.pre_delete, sender=User)
 
 
-class Result(me.Document):
-    user_exam = me.ReferenceField(UserExam, required=True, reverse_delete_rule=me.CASCADE)
-    question = me.ReferenceField(quiz_models.Question, required=True)
-    selected_answer = me.StringField(required=True)
-    time_taken = me.StringField(required=True)  # Placeholder, adjust based on your needs
-    is_correct = me.BooleanField(required=True)
-    timestamp = me.DateTimeField(default=datetime.utcnow)  # to track when the user answered the question
-    submitted_at = me.DateTimeField()  # to track when the user submitted the answer
+class Response(EmbeddedDocument):
+    question_id = ObjectIdField()
+    selected_option_id = ObjectIdField()
+
+
+class UserResponse(Document):
+    user = ReferenceField(User, required=True)
+    exam = ReferenceField(quiz_models.Exam, required=True)
+    date_taken = DateTimeField()
+    responses = ListField(EmbeddedDocumentField(Response))
+    scores = FloatField()  # Store scores for this exam attempt
+    attempt_number = IntField()  # Number of times a user has taken this specific exam
+
+class Transaction(Document):
+    TRANSACTION_STATUS = ('Completed', 'Pending', 'Failed', 'Refunded')
+    
+    user = ReferenceField(User, required=True)
+    exam = ReferenceField(quiz_models.Exam, required=True)
+    amount = FloatField(required=True)
+    timestamp = DateTimeField()
+    stripe_charge_id = StringField()
+    status = StringField(choices=TRANSACTION_STATUS)

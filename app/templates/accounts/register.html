@@ -1,94 +1,107 @@
 {% extends "layouts/base-fullscreen.html" %}
 
-{% block title %} Sign UP {% endblock %}
+{% block title %} Sign UP {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
+{% block body_class %} bg-gray-200 {% endblock %}
+
 {% block content %}
-    <section>
-        <div class="page-header min-vh-100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-                        <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
-                             style="background-image: url('/static/assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
-                        <div class="card card-plain">
-                            <div class="card-header">
-                                <h4 class="font-weight-bolder">
-                                    Certify
-                                </h4>
-                                <p class="mb-0">
-                                    {% if msg %}
-                                        <span class="text-danger">{{ msg | safe }}</span>
-                                    {% else %}
-                                        Enter your email and password to register
-                                    {% endif %}
-                                </p>
-                            </div>
 
-                            <!-- Display flashed messages -->
-                            {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            {% for message in messages %}
-                                                <li>{{ message | safe }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                {% endif %}
-                            {% endwith %}
+  {% include 'includes/navigation-transparent.html' %}
 
-                            <div class="card-body">
-                                <form role="form" method="post" action="">
+  <main class="main-content  mt-0">
+    
+    <div class="page-header align-items-start min-height-300 m-3 border-radius-xl" style="background-image: url('https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1949&q=80');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+    </div>
 
-                                    {{ form.hidden_tag() }}
-
-                                    <div class="input-group input-group-outline mb-3">
-                                        {{ form.username(class="form-control", placeholder="Username") }}
-                                    </div>
-                                    <div class="input-group input-group-outline mb-3">
-                                        {{ form.email(class="form-control", type="email", placeholder="Email") }}
-                                    </div>
-                                    <div class="input-group input-group-outline mb-3">
-                                        {{ form.password(class="form-control", type="password", placeholder="Password") }}
-                                    </div>
-                                    <div class="input-group input-group-outline mb-3">
-                                        {{ form.confirm_password(class="form-control", type="password", placeholder="Confirm Password") }}
-                                    </div>
-                                    <div class="form-check form-check-info text-start ps-0">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                               id="flexCheckDefault" checked>
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            I agree the <a href="" class="text-dark font-weight-bolder">Terms
-                                            and Conditions</a>
-                                        </label>
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="submit" name="register"
-                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign
-                                            Up
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                <p class="mb-2 text-sm mx-auto">
-                                    Already have an account?
-                                    <a href="/login" class="text-primary text-gradient font-weight-bold">Sign IN</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container mb-4">
+      <div class="row mt-lg-n12 mt-md-n12 mt-n12 justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+          <div class="card mt-8">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1 text-center py-4">
+                <h4 class="font-weight-bolder text-white mt-1">
+                  Sign UP
+                </h4>
+                <p class="mb-1 text-sm text-white">
+                    {% if msg %}
+                      {{ msg | safe }}
+                    {% else %}
+                      Enter your email and password to register
+                    {% endif %}                
+                </p>
+              </div>
             </div>
+
+            {% if success %}
+
+              <br />
+              <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                <p class="mb-4 text-sm mx-auto">
+                  <a href="{{ url_for('authentication_blueprint.login') }}" 
+                    class="btn bg-gradient-dark w-100 mt-3 mb-0">Sign IN</a>
+                </p>
+              </div>
+
+            {% else %}
+
+              <div class="card-body">              
+                <form method="post" action="" role="form" class="text-start">
+
+                  {{ form.hidden_tag() }} 
+
+                  <div class="input-group input-group-static mb-4">
+                    <label>Username</label>
+                    {{ form.username(class="form-control") }}
+                  </div>
+
+                  <div class="input-group input-group-static mb-4">
+                    <label>Email</label>
+                    {{ form.email(class="form-control", type="email") }}
+                  </div>
+
+                  <div class="input-group input-group-static mb-4">
+                    <label>Password</label>
+                    {{ form.password(class="form-control", type="password") }}
+                  </div>
+
+                  <div class="input-group input-group-static mb-4">
+                    <label>Confirm Password</label>
+                    {{ form.password_confirm(class="form-control", type="password") }}
+                </div>
+                  
+                  <div class="form-check form-switch d-flex align-items-center mb-3">
+                    <br />
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" name="register"   
+                            class="btn bg-gradient-dark w-100 mt-3 mb-0">Sign UP</button>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                <p class="mb-4 text-sm mx-auto">
+                  Already have an account?
+                  <a href="{{ url_for('authentication_blueprint.login') }}" 
+                    class="text-success text-gradient font-weight-bold">Sign IN</a>
+                </p>
+              </div>
+
+            {% endif %}
+            
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+
+    {% include 'includes/footer-3.html' %}
+
+  </main>
+
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %} {% endblock javascripts %}

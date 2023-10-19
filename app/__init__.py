@@ -14,10 +14,11 @@ def create_app(config_class=Config):
     from app.auth.routes import auth
     from app.admin.routes import admin
     from app.quiz.routes import quiz
+    from app.home import bp as home_bp
     app.register_blueprint(auth)
     app.register_blueprint(admin)
     app.register_blueprint(quiz)
-
+    app.register_blueprint(home_bp)
     # Database connection
     DB_URI = os.environ.get('DB_URI')
     me.connect(host=DB_URI, tlsCAFile=certifi.where())

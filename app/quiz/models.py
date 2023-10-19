@@ -1,31 +1,29 @@
 from datetime import datetime
 import mongoengine as me
+from mongoengine import Document, StringField, BinaryField, BooleanField, DateTimeField, EmbeddedDocument, FloatField, ReferenceField, ObjectIdField, ListField, EmbeddedDocumentField
+from mongoengine import signals
 
 
-class Quiz(me.Document):
-    question_number = me.IntField(required=True)
-    question = me.StringField(required=True)
-    options = me.DictField()
-    correct_answer = me.StringField(required=True)
+class Option(me.EmbeddedDocument):
+    text = StringField(required=True)
+    is_correct = BooleanField(default=False)
+    explanation = StringField()
 
+class Question(EmbeddedDocument):
+    text = StringField(required=True)
+    subsection = StringField()
+    options = ListField(EmbeddedDocumentField(Option))
 
-class Question(me.Document):
-    content = me.StringField(required=True)
-    choices = me.DictField()
-    correct_answer = me.StringField(required=True, choices=["A", "B", "C", "D", "E"])
-    explanation = me.StringField()
+class Exam(Document):
+    name = StringField(required=True)
+    price = FloatField(default=19.99)
+    questions = ListField(EmbeddedDocumentField(Question))
+    is_active = BooleanField(default=True)  # Exam status: active or archived
 
+    @classmethod
+    def pre_delete(cls, sender, document, **kwargs):
+        from quiz.models import UserResponse  # Import related models
+        UserResponse.objects(exam=document).delete()
 
-class Subsection(me.Document):
-    title = me.StringField(required=True)
-    description = me.StringField()
-    exam = me.ReferenceField('Exam')  # Reference to the Exam document
-    questions = me.ListField(me.ReferenceField(Question))
-
-
-class Exam(me.Document):
-    name = me.StringField(required=True, unique=True)
-    description = me.StringField()
-    subsections = me.ListField(me.ReferenceField(Subsection))
-
+signals.pre_delete.connect(Exam.pre_delete, sender=Exam)
 
