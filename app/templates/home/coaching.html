@@ -1,0 +1,98 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Profile Messages {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="container-fluid px-2 px-md-4">
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div>
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-auto">
+          <div class="avatar avatar-xl position-relative">
+            <img src="{{ url_for('static', filename='assets/img/bruce-mars.jpg') }}"  alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+          </div>
+        </div>
+        <div class="col-auto my-auto">
+          <div class="h-100">
+            <h5 class="mb-1">
+              {{ current_user.first }}
+            </h5>
+            <p class="mb-0 font-weight-normal text-sm"></p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+          <div class="nav-wrapper position-relative end-0">
+            <ul class="nav nav-pills nav-fill p-1" role="tablist">
+              <!-- ... Rest of your nav items -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+            <div class="card blur shadow-blur max-height-vh-70">
+              <!-- ... Rest of the header and settings div -->
+              <div class="card-body overflow-auto overflow-x-hidden">
+
+                {% for message in messages %}
+                    {% if message["role"] == "user" %}
+                    <div class="row justify-content-end text-right mb-4">
+                        <div class="col-auto">
+                            <div class="card bg-gradient-primary">
+                                <div class="card-body py-2 px-3 text-white">
+                                    <p class="mb-1">{{ message["content"] }}</p>
+                                    <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
+                                        <i class="ni ni-check-bold text-sm me-1"></i>
+                                        <small>{{ message["time"] }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="row justify-content-start mb-4">
+                        <div class="col-auto">
+                            <div class="card">
+                                <div class="card-body py-2 px-3">
+                                    <p class="mb-1">{{ message["content"] }}</p>
+                                    <div class="d-flex align-items-center text-sm opacity-6">
+                                        <i class="ni ni-check-bold text-sm me-1"></i>
+                                        <small>{{ message["time"] }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+              </div>
+              <div class="card-footer d-block">
+                <form class="align-items-center" method="POST" action="{{ url_for('coaching') }}">
+                  <div class="input-group input-group-outline d-flex">
+                    <label class="form-label">Type your message</label>
+                    <input id="user_input" type="text" name="user_input" class="form-control form-control-lg">
+                    <button type="submit" class="btn bg-gradient-primary mb-0">
+                      <i class="material-icons">send</i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'includes/footer.html' %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %} {% endblock javascripts %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/material-dashboard.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ exam.title }}</h1>
+        <p>{{ exam.description }}</p>
+
+        <h2>Subsections:</h2>
+        <ul>
+            {% for subsection in subsections %}
+            <li>
+                <strong>{{ subsection.title }}</strong>
+                <ul>
+                    {% for question in subsection.questions %}
+                    <li>{{ question.content }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to the list of exams</a>
+    </div>
+</body>
+
+</html>

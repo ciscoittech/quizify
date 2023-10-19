@@ -1,3 +1,8 @@
-from flask import blueprints
+from flask import Blueprint
 
-quiz = blueprints.Blueprint('quiz', __name__)
+bp = Blueprint('quiz', __name__)
+
+from app.quiz import routes
+
+
+

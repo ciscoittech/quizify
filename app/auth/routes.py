@@ -2,12 +2,12 @@ from flask import render_template, redirect, request, session, url_for, flash
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user
 from app.auth.forms import RegistrationForm
-from app.auth import auth
+from app.auth import bp
 from app.admin.models import User
 from app.auth.forms import LoginForm
 
 
-@auth.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('admin.profile'))
@@ -30,13 +30,13 @@ def login():
     return render_template('accounts/login.html', title='Sign In', form=form)
 
 
-@auth.route('/', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
 def index():
     form = RegistrationForm()
     return render_template('accounts/register.html', form=form)
 
 
-@auth.route('/register', methods=['GET', 'POST'])
+@bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return render_template('home/index.html')
@@ -62,8 +62,8 @@ def register():
         return redirect(url_for('admin.profile'))
     return render_template('accounts/register.html', title='Register', form=form)
 
-@auth.route('/logout')
-@auth.route('/start_exam/logout')
+@bp.route('/logout')
+@bp.route('/start_exam/logout')
 def logout():
     logout_user()
     flash('You have been logged out.')

@@ -5,5 +5,5 @@ from app.quiz.forms import QuestionForm
 from app.admin.models import User
 from bson import ObjectId
 import random
-from app.quiz import quiz
+from app.quiz import bp
 

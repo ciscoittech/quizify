@@ -3,7 +3,7 @@ from datetime import timedelta
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 from app.quiz.models import Exam
-from app.admin import admin
+from app.admin import bp
 from app.admin.forms import UpdateProfileForm, DeleteForm
 from app.admin.models import User
 
@@ -11,7 +11,7 @@ from app.admin.models import User
 
 
 # Define a route for the user profile
-@admin.route('/profile', methods=['GET', 'POST'])
+@bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     form = UpdateProfileForm()
@@ -30,12 +30,12 @@ def profile():
 
 
 # Define a route for editing the user profile
-@admin.route('/edit_profile')
+@bp.route('/edit_profile')
 def edit_profile():
     return render_template('edit_profile.html')
 
 
-@admin.route('/delete/<user_id>', methods=['POST'])
+@bp.route('/delete/<user_id>', methods=['POST'])
 def delete_user(user_id):
     form = DeleteForm()
     if form.validate_on_submit():
@@ -48,7 +48,7 @@ def delete_user(user_id):
     return redirect(url_for('admin.reports'))
 
 
-@admin.route('/dashboard')
+@bp.route('/dashboard')
 def reports():
     delete_form = DeleteForm()
     # Define the start of today
