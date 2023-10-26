@@ -1,0 +1,108 @@
+{
+    "Exam": {
+        "name": "CompTIA Security+",
+        "description": "CompTIA Security+ is a global certification exam that validates the baseline skills you need to perform core security functions.",
+        "description_long": "CompTIA Security+ is the first security certification IT professionals should earn. It establishes the core knowledge required for any cybersecurity role and provides a springboard to intermediate-level cybersecurity jobs. The certification emphasizes hands-on practical skills, ensuring the security professional is better prepared to problem solve a wider variety of issues.",
+        "possible_jobs": ["Systems Administrator", "Network Administrator", "Security Administrator", "Security Consultant", "Security Engineer", "Security Analyst"],
+        "section": "Threats, Attacks and Vulnerabilities",
+        "questions": [
+            {
+                "text": "What is the primary purpose of a DDoS attack?",
+                "type": "multiple_choice",
+                "options": [
+                    {
+                        "text": "Steal user data",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Encrypt data for ransom",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Disrupt service availability",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "Promote a political message",
+                        "is_correct": false
+                    }
+                ]
+            },
+            {
+                "text": "Phishing is primarily targeted at which of the following?",
+                "type": "multiple_choice",
+                "options": [
+                    {
+                        "text": "Network Infrastructure",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Hardware Components",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "User Credentials",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "Software Updates",
+                        "is_correct": false
+                    }
+                ]
+            },
+            {
+                "text": "A Trojan is a form of malware that pretends to be legitimate software?",
+                "type": "true_or_false",
+                "answer": "true",
+                "options": [
+                    {"text": "True"},
+                    {"text": "False"}
+                ]
+            },
+            {
+                "text": "Which of the following describes an attack where the attacker disguises as a trustworthy entity to deceive a victim into providing sensitive information?",
+                "type": "multiple_choice",
+                "options": [
+                    {
+                        "text": "Spoofing",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Phishing",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "Sniffing",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Spamming",
+                        "is_correct": false
+                    }
+                ]
+            },
+            {
+                "text": "Zero-day exploits are attacks that target vulnerabilities that:",
+                "type": "multiple_choice",
+                "options": [
+                    {
+                        "text": "Have been fixed for zero days",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Are known to the public for a long time",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Have no current fixes available",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "Are older than 24 hours",
+                        "is_correct": false
+                    }
+                ]
+            }
+        ]
+    }
+}

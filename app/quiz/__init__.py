@@ -2,7 +2,7 @@ from flask import Blueprint
 
 bp = Blueprint('quiz', __name__)
 
-from app.quiz import routes
+from app.quiz import routes, models, forms
 
 
 

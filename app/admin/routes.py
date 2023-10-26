@@ -5,28 +5,44 @@ from flask_login import current_user, login_required
 from app.quiz.models import Exam
 from app.admin import bp
 from app.admin.forms import UpdateProfileForm, DeleteForm
-from app.admin.models import User
+from app.admin.models import User, UserResponse
 
 
 
 
-# Define a route for the user profile
 @bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    form = UpdateProfileForm()
+    # Initialize the form
+    # form = UpdateProfileForm()
+
+    # Fetch all exams for display
     exams = Exam.objects.all()
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        # Add code to handle profile picture upload
-        current_user.save()
-        flash('Your profile has been updated!', 'success')
-        return redirect(url_for('user.profile'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-    return render_template('home/profile.html', title='Profile', form=form, exams=exams)
+
+    # Fetch user's exam results for displaying progress and scores
+    user_exam_results = UserResponse.objects(user=current_user)
+
+    # If there's a POST request to update the profile
+    # if form.validate_on_submit():
+    #     current_user.username = form.username.data
+    #     current_user.email = form.email.data
+    #     # Add code to handle profile picture upload if desired
+    #     current_user.save()
+    #     flash('Your profile has been updated!', 'success')
+    #     return redirect(url_for('user.profile'))
+    
+    # For a GET request, populate the form with the current user's info
+    # elif request.method == 'GET':
+    #     form.username.data = current_user.username
+    #     form.email.data = current_user.email
+
+    return render_template(
+        'home/profile.html', 
+        title='Profile',
+        exams=exams,
+        user_exam_results=user_exam_results,
+        # form=form  # Uncomment this when you decide to use the form
+    )
 
 
 # Define a route for editing the user profile
@@ -69,4 +85,6 @@ def reports():
 
     return render_template('dashboard/dashboard.html', all_users=all_users, total_users=total_users,
                            users_today=users_today, delete_form=delete_form)
+
+
 

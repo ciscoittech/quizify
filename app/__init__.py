@@ -14,14 +14,15 @@ def create_app(config_class=Config):
     from app.auth import bp as auth_bp
     from app.admin import bp as admin_bp
     from app.quiz import bp as quiz_bp
-    from app.home import bp as home_bp
+  
     app.register_blueprint(auth_bp)
     app.register_blueprint(admin_bp)
     app.register_blueprint(quiz_bp)
-    app.register_blueprint(home_bp)
+
     # Database connection
-    DB_URI = os.environ.get('DB_URI')
-    me.connect(host=DB_URI, tlsCAFile=certifi.where())
+    # DB_URI = os.environ.get('DB_URI')
+    # me.connect(host=DB_URI, tlsCAFile=certifi.where())
+    me.connect('quizifypro', host='localhost', port=27017)
 
     # Flask-login configuration
     login_manager = LoginManager()
