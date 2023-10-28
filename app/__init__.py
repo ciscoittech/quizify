@@ -20,9 +20,9 @@ def create_app(config_class=Config):
     app.register_blueprint(quiz_bp)
 
     # Database connection
-    # DB_URI = os.environ.get('DB_URI')
-    # me.connect(host=DB_URI, tlsCAFile=certifi.where())
-    me.connect('quizifypro', host='localhost', port=27017)
+    DB_URI = os.environ.get('DB_URI')
+    me.connect(host=DB_URI, tlsCAFile=certifi.where())
+    # me.connect('quizifypro', host='localhost', port=27017)
 
     # Flask-login configuration
     login_manager = LoginManager()
