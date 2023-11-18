@@ -8,8 +8,6 @@ from app.admin.forms import UpdateProfileForm, DeleteForm
 from app.admin.models import User
 
 
-
-
 # Define a route for the user profile
 @admin.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -69,4 +67,3 @@ def reports():
 
     return render_template('dashboard/dashboard.html', all_users=all_users, total_users=total_users,
                            users_today=users_today, delete_form=delete_form)
-
