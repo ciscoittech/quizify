@@ -27,5 +27,10 @@ class Exam(me.Document):
     name = me.StringField(required=True, unique=True)
     description = me.StringField()
     subsections = me.ListField(me.ReferenceField(Subsection))
+    questions = me.ListField(me.ReferenceField(Question))
+    is_active = me.BooleanField(default=False)
+    price = me.DecimalField(required=True, precision=2)
+    possible_jobs = me.ListField(me.StringField())
+    description_long = me.StringField()
 
 
