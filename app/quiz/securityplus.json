@@ -1,108 +1,53 @@
 {
-    "Exam": {
-        "name": "CompTIA Security+",
-        "description": "CompTIA Security+ is a global certification exam that validates the baseline skills you need to perform core security functions.",
-        "description_long": "CompTIA Security+ is the first security certification IT professionals should earn. It establishes the core knowledge required for any cybersecurity role and provides a springboard to intermediate-level cybersecurity jobs. The certification emphasizes hands-on practical skills, ensuring the security professional is better prepared to problem solve a wider variety of issues.",
-        "possible_jobs": ["Systems Administrator", "Network Administrator", "Security Administrator", "Security Consultant", "Security Engineer", "Security Analyst"],
-        "section": "Threats, Attacks and Vulnerabilities",
+    "name": "CompTIA Security+",
+    "level": "Intermediate",
+    "price": 19.99,
+    "description": "CompTIA Security+ exam covers core security functions and helps you to start a career in cybersecurity.",
+    "description_short": "Core security functions and cybersecurity career starter.",
+    "description_long": "The CompTIA Security+ exam is designed to ensure that a candidate has the knowledge and skills required to assess the security posture of an enterprise environment and recommend and implement appropriate security solutions.",
+    "possible_jobs": "Systems Administrator, Network Administrator, Security Administrator",
+    "issuing_organization": "CompTIA",
+    "is_active": true,
+    "subsections": [
+      {
+        "name": "Network Security",
+        "description": "Covers concepts related to securing networks and network technologies.",
         "questions": [
-            {
-                "text": "What is the primary purpose of a DDoS attack?",
-                "type": "multiple_choice",
-                "options": [
-                    {
-                        "text": "Steal user data",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Encrypt data for ransom",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Disrupt service availability",
-                        "is_correct": true
-                    },
-                    {
-                        "text": "Promote a political message",
-                        "is_correct": false
-                    }
-                ]
-            },
-            {
-                "text": "Phishing is primarily targeted at which of the following?",
-                "type": "multiple_choice",
-                "options": [
-                    {
-                        "text": "Network Infrastructure",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Hardware Components",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "User Credentials",
-                        "is_correct": true
-                    },
-                    {
-                        "text": "Software Updates",
-                        "is_correct": false
-                    }
-                ]
-            },
-            {
-                "text": "A Trojan is a form of malware that pretends to be legitimate software?",
-                "type": "true_or_false",
-                "answer": "true",
-                "options": [
-                    {"text": "True"},
-                    {"text": "False"}
-                ]
-            },
-            {
-                "text": "Which of the following describes an attack where the attacker disguises as a trustworthy entity to deceive a victim into providing sensitive information?",
-                "type": "multiple_choice",
-                "options": [
-                    {
-                        "text": "Spoofing",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Phishing",
-                        "is_correct": true
-                    },
-                    {
-                        "text": "Sniffing",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Spamming",
-                        "is_correct": false
-                    }
-                ]
-            },
-            {
-                "text": "Zero-day exploits are attacks that target vulnerabilities that:",
-                "type": "multiple_choice",
-                "options": [
-                    {
-                        "text": "Have been fixed for zero days",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Are known to the public for a long time",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Have no current fixes available",
-                        "is_correct": true
-                    },
-                    {
-                        "text": "Are older than 24 hours",
-                        "is_correct": false
-                    }
-                ]
-            }
+          {
+            "text": "Which of the following types of attacks primarily aims at exhausting the network resources of the target?",
+            "options": [
+              {
+                "text": "Phishing Attack",
+                "is_correct": false
+              },
+              {
+                "text": "DDoS Attack",
+                "is_correct": true,
+                "explanation": "A Distributed Denial of Service (DDoS) attack primarily aims to exhaust the network resources of the target, rendering the service unavailable."
+              },
+              {
+                "text": "SQL Injection Attack",
+                "is_correct": false
+              },
+              {
+                "text": "Man-in-the-Middle Attack",
+                "is_correct": false
+              }
+            ],
+            "difficulty": "Medium",
+            "explanation": "DDoS attacks are designed to overwhelm a system's resources, making it unavailable to serve legitimate users."
+          }
+ 
         ]
-    }
-}
+      },
+      {
+        "name": "Threats and Vulnerabilities",
+        "description": "Focuses on identifying and mitigating various security threats and vulnerabilities.",
+        "questions": [
+
+        ]
+      }
+
+    ]
+  }
+  

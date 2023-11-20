@@ -5,7 +5,6 @@ import json
 # Connect to MongoDB
 me.connect('quizifyprov1', host='localhost', port=27017)
 
-
 # Function to create an Option from a data dictionary
 def create_option(data):
     return Option(
@@ -14,41 +13,45 @@ def create_option(data):
         explanation=data.get('explanation', '')
     )
 
-
 # Function to create a Question from a data dictionary
-def create_question(data, subsections):
-    # Find the corresponding subsection object
-    subsection = next((sub for sub in subsections if sub.name == data['subsection']), None)
-
+def create_question(data):
     return Question(
         text=data['text'],
-        subsection=subsection,
         options=[create_option(opt) for opt in data['options']],
         difficulty=data.get('difficulty', 'Medium'),
         explanation=data.get('explanation', '')
     )
 
+# Function to import data for a single exam
+def import_data(exam_data):
+    # Create subsections with embedded questions
+    exam_subsections = []
+    for sub_data in exam_data.get("subsections", []):
+        subsection_questions = [create_question(q) for q in sub_data.get("questions", [])]
+        exam_subsections.append(Subsection(
+            name=sub_data['name'],
+            description=sub_data.get('description', ''),
+            questions=subsection_questions
+        ))
 
-# Function to import data
-def import_data(data):
-    for exam_data in data:
-        # Create exam with embedded subsections
-        exam_subsections = [Subsection(name=sub['name'], description=sub.get('description', '')) for sub in
-                            exam_data.get("Subsections", [])]
-
-        exam = Exam(
-            name=exam_data["name"],
-            level=exam_data.get("level", "Intermediate"),
-            price=exam_data.get("price", 0.0),
-            # ... other exam fields ...
-            subsections=exam_subsections,
-            questions=[create_question(q, exam_subsections) for q in exam_data.get("Questions", [])]
-        ).save()
-
+    # Create the exam with embedded subsections
+    exam = Exam(
+        name=exam_data["name"],
+        level=exam_data.get("level", "Intermediate"),
+        price=exam_data.get("price", 0.0),
+        description=exam_data.get("description", ""),
+        description_short=exam_data.get("description_short", ""),
+        description_long=exam_data.get("description_long", ""),
+        possible_jobs=exam_data.get("possible_jobs", ""),
+        issuing_organization=exam_data.get("issuing_organization", ""),
+        is_active=exam_data.get("is_active", True),
+        subsections=exam_subsections
+    ).save()
 
 # Read data from JSON file
-with open('your_data_file.json', 'r') as file:
-    data = json.load(file)
+with open('securityplus.json', 'r') as file:
+    exam_data = json.load(file)
 
 # Import the data
-import_data(data)
+import_data(exam_data)
+print("Data imported successfully!")

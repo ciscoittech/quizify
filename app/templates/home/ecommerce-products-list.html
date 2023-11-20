@@ -34,7 +34,7 @@
                                             {% if exam.id in enrolled_exam_ids %}
                                                 <button class="btn btn-success" disabled>Enrolled</button>
                                             {% else %}
-                                                <a href="{{ url_for('exams.enroll_exam', exam_id=exam.id) }}"
+                                                <a href="{{ url_for('quiz.enroll_exam', exam_id=exam.id) }}"
                                                    class="btn btn-primary">Enroll</a>
                                             {% endif %}
                                         </td>
