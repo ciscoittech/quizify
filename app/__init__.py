@@ -1,9 +1,10 @@
 from flask import Flask, session
 from flask_login import LoginManager
 import mongoengine as me
-import certifi
+# import certifi
 from config import Config
 import os
+
 
 # Move this to a separate function
 def create_app(config_class=Config):
@@ -14,15 +15,15 @@ def create_app(config_class=Config):
     from app.auth import bp as auth_bp
     from app.admin import bp as admin_bp
     from app.quiz import bp as quiz_bp
-  
+
     app.register_blueprint(auth_bp)
     app.register_blueprint(admin_bp)
     app.register_blueprint(quiz_bp)
 
     # Database connection
     DB_URI = os.environ.get('DB_URI')
-    me.connect(host=DB_URI, tlsCAFile=certifi.where())
-    # me.connect('quizifypro', host='localhost', port=27017)
+    # me.connect(host=DB_URI, tlsCAFile=certifi.where())
+    me.connect('quizifyprov1', host='localhost', port=27017)
 
     # Flask-login configuration
     login_manager = LoginManager()
@@ -38,5 +39,6 @@ def create_app(config_class=Config):
             return None
 
     return app
+
 
 app = create_app()

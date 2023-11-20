@@ -1,190 +1,86 @@
-{% extends "layouts/base.html" %} {% block title %} Dashboard Product List {%
-endblock %}
+{% extends "layouts/base.html" %} {% block title %} Dashboard Product List {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
 
-<div class="container-fluid py-4">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <!-- Card header -->
-        <div class="card-header pb-0">
-          <div class="d-lg-flex">
-            <div>
-              <h5 class="mb-0">All Products</h5>
-              <p class="text-sm mb-0">
-                A lightweight, extendable, dependency-free javascript HTML table
-                plugin.
-              </p>
-            </div>
-            <div class="ms-auto my-auto mt-lg-0 mt-4">
-              <div class="ms-auto my-auto">
-                <a
-                  href="./new-product.html"
-                  class="btn bg-gradient-primary btn-sm mb-0"
-                  target="_blank"
-                  >+&nbsp; New Product</a
-                >
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btn-sm mb-0"
-                  data-bs-toggle="modal"
-                  data-bs-target="#import"
-                >
-                  Import
-                </button>
-                <div
-                  class="modal fade"
-                  id="import"
-                  tabindex="-1"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog mt-lg-10">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
-                        <i class="material-icons ms-3">file_upload</i>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <p>You can browse your computer for a file.</p>
-                        <div class="input-group input-group-dynamic mb-3">
-                          <label class="form-label">Browse file...</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            onfocus="focused(this)"
-                            onfocusout="defocused(this)"
-                          />
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="importCheck"
-                            checked=""
-                          />
-                          <label class="custom-control-label" for="importCheck"
-                            >I accept the terms and conditions</label
-                          >
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn bg-gradient-secondary btn-sm"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button
-                          type="button"
-                          class="btn bg-gradient-primary btn-sm"
-                        >
-                          Upload
-                        </button>
-                      </div>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header pb-0">
+                        <h5 class="mb-0">Available Exams</h5>
+                        <p class="text-sm mb-0">
+                            Browse through the list of available IT certification exams.
+                        </p>
                     </div>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
-                  data-type="csv"
-                  type="button"
-                  name="button"
-                >
-                  Export
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body px-0 pb-0">
-          <div class="table-responsive">
-            <table class="table table-flush" id="products-list">
-              <thead class="thead-light">
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Description</th> 
-                </tr>
-              </thead>
-              <tbody>
-                {% for exam in exams %}
-                <tr>
-                  <td>
-                    <div class="d-flex">
-                      <div class="form-check my-auto">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="customCheck{{ loop.index }}"
-                          checked
-                        />
-                      </div>
-                      <!-- I'm assuming there's an image for the exam. If not, you can remove this part -->
-                      <h6 class="ms-3 my-auto">{{ exam.name }}</h6>
-                    </div>
-                  </td>
-                  <td class="text-sm">${{ exam.price }}</td>
-                </tr>  
-              </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  {% include 'includes/footer.html' %}
-</div>
+                    <div class="card-body px-0 pb-2">
+                        <div class="table-responsive">
+                            <table class="table table-flush" id="exams-list">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Exam Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for exam in exams %}
+                                    <tr>
+                                        <!-- ... other exam details ... -->
+                                        <td class="text-center">
+                                            <!-- Check if the user is already enrolled -->
+                                            {% if exam.id in enrolled_exam_ids %}
+                                                <button class="btn btn-success" disabled>Enrolled</button>
+                                            {% else %}
+                                                <a href="{{ url_for('exams.enroll_exam', exam_id=exam.id) }}"
+                                                   class="btn btn-primary">Enroll</a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/footer.html' %}
+    </div>
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 
-<script>
-  if (document.getElementById("products-list")) {
-    const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
-      searchable: true,
-      fixedHeight: false,
-      perPage: 7,
-    });
+    <script>
+        if (document.getElementById("products-list")) {
+            const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
+                searchable: true,
+                fixedHeight: false,
+                perPage: 7,
+            });
 
-    document.querySelectorAll(".export").forEach(function (el) {
-      el.addEventListener("click", function (e) {
-        var type = el.dataset.type;
+            document.querySelectorAll(".export").forEach(function (el) {
+                el.addEventListener("click", function (e) {
+                    var type = el.dataset.type;
 
-        var data = {
-          type: type,
-          filename: "material-" + type,
-        };
+                    var data = {
+                        type: type,
+                        filename: "material-" + type,
+                    };
 
-        if (type === "csv") {
-          data.columnDelimiter = "|";
+                    if (type === "csv") {
+                        data.columnDelimiter = "|";
+                    }
+
+                    dataTableSearch.export(data);
+                });
+            });
         }
-
-        dataTableSearch.export(data);
-      });
-    });
-  }
-</script>
+    </script>
 
 {% endblock javascripts %}

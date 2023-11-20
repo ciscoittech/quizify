@@ -7,7 +7,7 @@ from datetime import datetime
 from app.quiz import models as quiz_models
 
 
-class User(UserMixin, me.Document):
+class User(me.Document, UserMixin):
     email = me.StringField(required=True, unique=True)
     username = me.StringField(required=True, unique=True)
     password_hash = me.StringField(required=True)
@@ -15,7 +15,7 @@ class User(UserMixin, me.Document):
     last_name = me.StringField()
     created_at = me.DateTimeField(auto_now_add=True)
     last_modified = me.DateTimeField(auto_now=True)
-    # Add a reference to exams taken by the user
+    tier = me.StringField(choices=["Free", "Paid", "Premium"])
     exams_taken = me.ListField(me.ReferenceField('ExamResult'))
 
     def set_password(self, password):
@@ -24,12 +24,11 @@ class User(UserMixin, me.Document):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
     @classmethod
     def pre_delete(cls, sender, document, **kwargs):
-        from quiz.models import UserResponse, Transaction  # Import related models
-        UserResponse.objects(user=document).delete()
-        Transaction.objects(user=document).delete()
+        # Logic for handling user deletion, e.g., removing related responses
+        pass
+
 
 signals.pre_delete.connect(User.pre_delete, sender=User)
 

@@ -21,7 +21,7 @@ def login():
 
         login_user(user, remember=form.remember_me.data)
         session['user_id'] = str(user.id)  # Storing user_id in session
-        
+
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('admin.profile')
@@ -62,12 +62,10 @@ def register():
         return redirect(url_for('admin.profile'))
     return render_template('accounts/register.html', title='Register', form=form)
 
+
 @bp.route('/logout')
 @bp.route('/start_exam/logout')
 def logout():
     logout_user()
     flash('You have been logged out.')
     return redirect(url_for('auth.login'))
-
-
-

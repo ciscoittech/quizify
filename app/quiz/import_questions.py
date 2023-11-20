@@ -1,52 +1,54 @@
 import mongoengine as me
+from models import Exam, Subsection, Question, Option  # Ensure you import your models
 import json
-from mongoengine import Document, StringField, BinaryField, BooleanField, DateTimeField, EmbeddedDocument, FloatField, ReferenceField, ObjectIdField, ListField, EmbeddedDocumentField
 
-# Connection to MongoDB
-me.connect('quizifypro', host='localhost', port=27017)
+# Connect to MongoDB
+me.connect('quizifyprov1', host='localhost', port=27017)
 
-# Define the models
-class Option(me.EmbeddedDocument):
-    text = StringField(required=True)
-    is_correct = BooleanField(default=False)
-    explanation = StringField()
 
-class Question(EmbeddedDocument):
-    text = StringField(required=True)
-    subsection = StringField()
-    options = ListField(EmbeddedDocumentField(Option))
+# Function to create an Option from a data dictionary
+def create_option(data):
+    return Option(
+        text=data['text'],
+        is_correct=data.get('is_correct', False),
+        explanation=data.get('explanation', '')
+    )
 
-class Exam(Document):
-    name = StringField(required=True)
-    price = FloatField(default=19.99)
-    description = StringField()
-    questions = ListField(EmbeddedDocumentField(Question))
-    is_active = BooleanField(default=True)
-    description_long = StringField()
-    possible_jobs = StringField()
 
-# Load data from securityplus.json
-with open("securityplus.json", "r") as file:
+# Function to create a Question from a data dictionary
+def create_question(data, subsections):
+    # Find the corresponding subsection object
+    subsection = next((sub for sub in subsections if sub.name == data['subsection']), None)
+
+    return Question(
+        text=data['text'],
+        subsection=subsection,
+        options=[create_option(opt) for opt in data['options']],
+        difficulty=data.get('difficulty', 'Medium'),
+        explanation=data.get('explanation', '')
+    )
+
+
+# Function to import data
+def import_data(data):
+    for exam_data in data:
+        # Create exam with embedded subsections
+        exam_subsections = [Subsection(name=sub['name'], description=sub.get('description', '')) for sub in
+                            exam_data.get("Subsections", [])]
+
+        exam = Exam(
+            name=exam_data["name"],
+            level=exam_data.get("level", "Intermediate"),
+            price=exam_data.get("price", 0.0),
+            # ... other exam fields ...
+            subsections=exam_subsections,
+            questions=[create_question(q, exam_subsections) for q in exam_data.get("Questions", [])]
+        ).save()
+
+
+# Read data from JSON file
+with open('your_data_file.json', 'r') as file:
     data = json.load(file)
 
-exam_data = data['Exam']
-
-# Create an instance of Exam model
-exam = Exam(
-    name=exam_data['name'],
-    description=exam_data['description'],
-    description_long=exam_data['description_long'],
-    possible_jobs=', '.join(exam_data['possible_jobs'])
-)
-
-# Iterate through the questions and add them
-for question_data in exam_data['questions']:
-    question = Question(text=question_data['text'], subsection=exam_data['section'])
-    for option_data in question_data['options']:
-        option = Option(text=option_data['text'], is_correct=option_data.get('is_correct', False))
-        question.options.append(option)
-    exam.questions.append(question)
-
-# Save to MongoDB
-exam.save()
-print("Data imported successfully!")
+# Import the data
+import_data(data)

@@ -16,11 +16,11 @@ def profile():
     # Initialize the form
     # form = UpdateProfileForm()
 
-    # Fetch all exams for display
-    exams = Exam.objects.all()
+    # # Fetch all exams for display
+    # exams = Exam.objects.all()
 
-    # Fetch user's exam results for displaying progress and scores
-    user_exam_results = UserResponse.objects(user=current_user)
+    # # Fetch user's exam results for displaying progress and scores
+    # user_exam_results = UserResponse.objects(user=current_user)
 
     # If there's a POST request to update the profile
     # if form.validate_on_submit():
@@ -39,8 +39,8 @@ def profile():
     return render_template(
         'home/profile.html', 
         title='Profile',
-        exams=exams,
-        user_exam_results=user_exam_results,
+        # exams=exams,
+        # user_exam_results=user_exam_results,
         # form=form  # Uncomment this when you decide to use the form
     )
 

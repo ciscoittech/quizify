@@ -1,38 +1,70 @@
-from datetime import datetime
 import mongoengine as me
-from mongoengine import Document, StringField, BinaryField, BooleanField, DateTimeField, EmbeddedDocument, FloatField, ReferenceField, ObjectIdField, ListField, EmbeddedDocumentField, IntField
-from mongoengine import signals
+from mongoengine import Document, StringField, ReferenceField, ListField, EmbeddedDocumentField, FloatField, IntField, \
+    DateTimeField
 
 
+# Option Embedded Document
 class Option(me.EmbeddedDocument):
-    text = StringField(required=True)
-    is_correct = BooleanField(default=False)
-    explanation = StringField()
+    """
+    Represents an option for a quiz question.
+    Each option contains the answer text, a flag indicating if it's correct, and an optional explanation.
+    """
+    text = me.StringField(required=True)
+    is_correct = me.BooleanField(default=False)
+    explanation = me.StringField()
 
-class Question(EmbeddedDocument):
-    text = StringField(required=True)
-    subsection = StringField()
-    options = ListField(EmbeddedDocumentField(Option))
 
-class Exam(Document):
-    name = StringField(required=True)
-    price = FloatField(default=19.99)
-    description = StringField()
-    questions = ListField(EmbeddedDocumentField(Question))
-    is_active = BooleanField(default=True)
-    description_short = StringField()
-    description_long = StringField()
-    possible_jobs = StringField()
-    issueing_organization = StringField()
-      # Exam status: active or archived
+# Question Embedded Document
+class Question(me.EmbeddedDocument):
+    """
+    Represents a single question in a quiz.
+    Each question has a text, a related subsection, a set of options, a difficulty level, and an optional explanation.
+    """
+    text = me.StringField(required=True)
+    subsection = me.ReferenceField('Subsection')  # Reference to a Subsection object
+    options = me.ListField(me.EmbeddedDocumentField(Option))
+    difficulty = me.StringField(choices=('Easy', 'Medium', 'Hard'))
+    explanation = me.StringField()
 
+
+# Subsection Document
+class Subsection(me.Document):
+    """
+    Represents a subsection in an exam.
+    Each subsection belongs to one exam and can contain multiple questions.
+    """
+    name = me.StringField(required=True)
+    description = me.StringField()
+    exam = me.ReferenceField('Exam')  # Reference to the Exam this subsection belongs to
+
+
+# Exam Document
+class Exam(me.Document):
+    """
+    Represents an entire exam or quiz.
+    Each exam has a name, a list of subsections, a list of questions, and an active status flag.
+    """
+    name = me.StringField(required=True, unique=True)
+    level = me.StringField(choices=['Beginner', 'Intermediate', 'Advanced'])
+    price = me.FloatField(default=0.0)
+    description = me.StringField()
+    description_short = me.StringField()
+    description_long = me.StringField()
+    possible_jobs = me.StringField()
+    issuing_organization = me.StringField()
+    subsections = me.ListField(me.ReferenceField('Subsection'))  # List of subsections in the exam
+    questions = me.ListField(me.EmbeddedDocumentField(Question))  # Questions included in the exam
+    is_active = me.BooleanField(default=True)
+
+    # Optional pre-delete hook
     @classmethod
     def pre_delete(cls, sender, document, **kwargs):
-        from quiz.models import UserResponse  # Import related models
-        UserResponse.objects(exam=document).delete()
+        # Handle cleanup of related data if necessary
+        pass
 
-signals.pre_delete.connect(Exam.pre_delete, sender=Exam)
 
+# Optionally, connect signals for pre_delete actions
+# me.signals.pre_delete.connect(Exam.pre_delete, sender=Exam)
 
 
 class LeaderboardEntry(Document):
