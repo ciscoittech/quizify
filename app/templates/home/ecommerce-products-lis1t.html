@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard Product List {%
+endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<div class="container-fluid py-4">
+ecommerce-products-list.html
+  {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+  if (document.getElementById("products-list")) {
+    const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
+      searchable: true,
+      fixedHeight: false,
+      perPage: 7,
+    });
+
+    document.querySelectorAll(".export").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        var type = el.dataset.type;
+
+        var data = {
+          type: type,
+          filename: "material-" + type,
+        };
+
+        if (type === "csv") {
+          data.columnDelimiter = "|";
+        }
+
+        dataTableSearch.export(data);
+      });
+    });
+  }
+</script>
+
+{% endblock javascripts %}
