@@ -4,7 +4,22 @@ endblock %}
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
 
+
+
+
 <div class="container-fluid py-4">
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="row">
+        <div class="col-12">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endwith %}
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -30,22 +45,24 @@ endblock %}
                 {% for exam in exams %}
                 <tr>
                   <td>{{ exam.name }}</td>
+                  <!-- Display exam name -->
                   <td>{{ exam.price }}</td>
+                  <!-- Display exam price -->
                   <td>{{ exam.description }}</td>
+                  <!-- Display exam description -->
                   <td class="text-center">
-                    {% if exam.id in enrolled_exam_ids %}
-                    <a
-                      href="{{ url_for('quiz.disenroll_exam', exam_id=exam.id) }}"
-                      class="btn btn-warning"
-                      >Disenroll</a
-                    >
-                    {% else %}
+                    <!-- Enroll Button -->
                     <a
                       href="{{ url_for('quiz.enroll_exam', exam_id=exam.id) }}"
                       class="btn btn-primary"
                       >Enroll</a
                     >
-                    {% endif %}
+                    <!-- Disenroll Button -->
+                    <a
+                      href="{{ url_for('quiz.disenroll_exam', exam_id=exam.id) }}"
+                      class="btn btn-warning"
+                      >Disenroll</a
+                    >
                   </td>
                 </tr>
                 {% endfor %}
