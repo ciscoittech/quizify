@@ -21,7 +21,7 @@ def create_app(config_class=Config):
     app.register_blueprint(quiz_bp)
 
     # Database connection
-    DB_URI = os.environ.get('DB_URI')
+    # DB_URI = os.environ.get('DB_URI')
     # me.connect(host=DB_URI, tlsCAFile=certifi.where())
     me.connect('quizifyprov1', host='localhost', port=27017)
 

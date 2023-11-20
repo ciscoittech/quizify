@@ -17,6 +17,8 @@ class User(me.Document, UserMixin):
     last_modified = me.DateTimeField(auto_now=True)
     tier = me.StringField(choices=["Free", "Paid", "Premium"])
     exams_taken = me.ListField(me.ReferenceField('ExamResult'))
+    enrolled_exams = me.ListField(me.ReferenceField('Exam'))  # List of enrolled exams
+
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

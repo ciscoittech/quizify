@@ -1,86 +1,95 @@
-{% extends "layouts/base.html" %} {% block title %} Dashboard Product List {% endblock %}
+{% extends "layouts/base.html" %} {% block title %} Dashboard Product List {%
+endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
 
-    <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <!-- Card header -->
-                    <div class="card-header pb-0">
-                        <h5 class="mb-0">Available Exams</h5>
-                        <p class="text-sm mb-0">
-                            Browse through the list of available IT certification exams.
-                        </p>
-                    </div>
-
-                    <div class="card-body px-0 pb-2">
-                        <div class="table-responsive">
-                            <table class="table table-flush" id="exams-list">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th>Exam Name</th>
-                                    <th>Price</th>
-                                    <th>Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for exam in exams %}
-                                    <tr>
-                                        <!-- ... other exam details ... -->
-                                        <td class="text-center">
-                                            <!-- Check if the user is already enrolled -->
-                                            {% if exam.id in enrolled_exam_ids %}
-                                                <button class="btn btn-success" disabled>Enrolled</button>
-                                            {% else %}
-                                                <a href="{{ url_for('quiz.enroll_exam', exam_id=exam.id) }}"
-                                                   class="btn btn-primary">Enroll</a>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header pb-0">
+          <h5 class="mb-0">Available Exams</h5>
+          <p class="text-sm mb-0">
+            Browse through the list of available IT certification exams.
+          </p>
         </div>
 
-        {% include 'includes/footer.html' %}
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive">
+            <table class="table table-flush" id="exams-list">
+              <thead class="thead-light">
+                <tr>
+                  <th>Exam Name</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for exam in exams %}
+                <tr>
+                  <td>{{ exam.name }}</td>
+                  <td>{{ exam.price }}</td>
+                  <td>{{ exam.description }}</td>
+                  <td class="text-center">
+                    {% if exam.id in enrolled_exam_ids %}
+                    <a
+                      href="{{ url_for('quiz.disenroll_exam', exam_id=exam.id) }}"
+                      class="btn btn-warning"
+                      >Disenroll</a
+                    >
+                    {% else %}
+                    <a
+                      href="{{ url_for('quiz.enroll_exam', exam_id=exam.id) }}"
+                      class="btn btn-primary"
+                      >Enroll</a
+                    >
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  {% include 'includes/footer.html' %}
+</div>
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 
-    <script>
-        if (document.getElementById("products-list")) {
-            const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
-                searchable: true,
-                fixedHeight: false,
-                perPage: 7,
-            });
+<script>
+  if (document.getElementById("products-list")) {
+    const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
+      searchable: true,
+      fixedHeight: false,
+      perPage: 7,
+    });
 
-            document.querySelectorAll(".export").forEach(function (el) {
-                el.addEventListener("click", function (e) {
-                    var type = el.dataset.type;
+    document.querySelectorAll(".export").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        var type = el.dataset.type;
 
-                    var data = {
-                        type: type,
-                        filename: "material-" + type,
-                    };
+        var data = {
+          type: type,
+          filename: "material-" + type,
+        };
 
-                    if (type === "csv") {
-                        data.columnDelimiter = "|";
-                    }
-
-                    dataTableSearch.export(data);
-                });
-            });
+        if (type === "csv") {
+          data.columnDelimiter = "|";
         }
-    </script>
+
+        dataTableSearch.export(data);
+      });
+    });
+  }
+</script>
 
 {% endblock javascripts %}

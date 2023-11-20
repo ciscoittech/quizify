@@ -33,3 +33,20 @@ def enroll_exam(exam_id):
         flash('You are already enrolled in this exam.', 'info')
 
     return redirect(url_for('quiz.examlist'))
+
+
+@bp.route('/disenroll_exam/<exam_id>')
+def disenroll_exam(exam_id):
+    exam = Exam.objects(id=exam_id).first()
+    if not exam:
+        flash('Exam not found!', 'danger')
+        return redirect(url_for('quiz.examlist'))
+
+    if exam in current_user.enrolled_exams:
+        current_user.enrolled_exams.remove(exam)
+        current_user.save()
+        flash('Disenrolled from the exam successfully!', 'success')
+    else:
+        flash('You are not enrolled in this exam.', 'info')
+
+    return redirect(url_for('quiz.examlist'))
