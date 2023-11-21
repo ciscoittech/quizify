@@ -52,3 +52,4 @@ class LeaderboardEntry(me.Document):
             '-average_score'
         ]
     }
+
