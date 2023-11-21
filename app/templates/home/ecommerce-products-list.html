@@ -1,0 +1,112 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard Product List {%
+endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+
+
+
+<div class="container-fluid py-4">
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="row">
+        <div class="col-12">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endwith %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header pb-0">
+          <h5 class="mb-0">Available Exams</h5>
+          <p class="text-sm mb-0">
+            Browse through the list of available IT certification exams.
+          </p>
+        </div>
+
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive">
+            <table class="table table-flush" id="exams-list">
+              <thead class="thead-light">
+                <tr>
+                  <th>Exam Name</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for exam in exams %}
+                <tr>
+                  <td>{{ exam.name }}</td>
+                  <!-- Display exam name -->
+                  <td>{{ exam.price }}</td>
+                  <!-- Display exam price -->
+                  <td>{{ exam.description }}</td>
+                  <!-- Display exam description -->
+                  <td class="text-center">
+                    <!-- Enroll Button -->
+                    <a
+                      href="{{ url_for('quiz.enroll_exam', exam_id=exam.id) }}"
+                      class="btn btn-primary"
+                      >Enroll</a
+                    >
+                    <!-- Disenroll Button -->
+                    <a
+                      href="{{ url_for('quiz.disenroll_exam', exam_id=exam.id) }}"
+                      class="btn btn-warning"
+                      >Disenroll</a
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+  if (document.getElementById("products-list")) {
+    const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
+      searchable: true,
+      fixedHeight: false,
+      perPage: 7,
+    });
+
+    document.querySelectorAll(".export").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        var type = el.dataset.type;
+
+        var data = {
+          type: type,
+          filename: "material-" + type,
+        };
+
+        if (type === "csv") {
+          data.columnDelimiter = "|";
+        }
+
+        dataTableSearch.export(data);
+      });
+    });
+  }
+</script>
+
+{% endblock javascripts %}

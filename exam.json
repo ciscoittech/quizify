@@ -1,0 +1,39 @@
+{
+    "Exam": {
+        "name": "CompTIA Security+",
+        "section": "Threats, Attacks and Vulnerabilities",
+        "questions": [
+            {
+                "text": "Sample True/False Question?",
+                "type": "true_or_false",
+                "answer": "true",
+                "options": [
+                    {"text": "True"},
+                    {"text": "False"}
+                ]
+            },
+            {
+                "text": "Which of the following is an example of a threat?",
+                "type": "multiple_choice",
+                "options": [
+                    {
+                        "text": "Malware",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "Encryption",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Firewall",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "VPN",
+                        "is_correct": false
+                    }
+                ]
+            }
+        ]
+    }
+}
