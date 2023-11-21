@@ -1,35 +1,44 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Template {% endblock %} 
+{% block title %} Exam Details {% endblock %}
 
-<!-- Specific Page CSS goes HERE  -->
+<!-- Specific Page CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-
 <div class="container-fluid py-4">
   <div class="row min-vh-80 h-100">
-      <div class="col-12">
-          <!-- NEW CONTENT HERE -->
-          <h2>Question Details</h2>
-          <p><strong>Content:</strong> {{ question.content }}</p>
-          <p><strong>Choices:</strong></p>
-          <ul>
-          {% for key, value in question.choices.items() %}
-              <li>{{ key }}: {{ value }}</li>
+    <div class="col-12">
+      <!-- Exam Details -->
+      <h2>Exam: {{ exam.name }}</h2>
+      <p>{{ exam.description }}</p>
+
+      <!-- Subsections and Questions -->
+      {% for subsection in exam.subsections %}
+        <div class="subsection">
+          <h3>Subsection: {{ subsection.name }}</h3>
+          <p>{{ subsection.description }}</p>
+          {% for question in subsection.questions %}
+            <div class="question">
+              <p><strong>Question:</strong> {{ question.text }}</p>
+              <ul>
+                {% for option in question.options %}
+                  <li>{{ option.text }} {% if option.is_correct %}(Correct Answer){% endif %}</li>
+                {% endfor %}
+              </ul>
+              <p><strong>Difficulty:</strong> {{ question.difficulty }}</p>
+              <p><strong>Explanation:</strong> {{ question.explanation }}</p>
+            </div>
           {% endfor %}
-          </ul>
-          <p><strong>Correct Answer:</strong> {{ question.correct_answer }}</p>
-          <p><strong>Explanation:</strong> {{ question.explanation }}</p>
-          
-      </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
-    {% include 'includes/footer.html' %}
-
-  </div>
-
+{% include 'includes/footer.html' %}
+</div>
 {% endblock content %}
 
-<!-- Specific Page JS goes HERE  -->
+<!-- Specific Page JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
+

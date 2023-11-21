@@ -50,3 +50,13 @@ def disenroll_exam(exam_id):
         flash('You are not enrolled in this exam.', 'info')
 
     return redirect(url_for('quiz.examlist'))
+
+
+
+@bp.route('/launch_exam/<exam_id>')
+
+def launch_exam(exam_id):
+    # Logic to handle exam launch
+    # This could involve redirecting to an exam page, loading exam questions, etc.
+    return render_template('quiz/exam_page.html', exam_id=exam_id)
+
