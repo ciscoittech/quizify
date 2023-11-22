@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import abort, flash, render_template, request, redirect, url_for, session
 from flask_login import current_user
+from app.quiz.handlers import get_exam_with_questions
 from app.quiz.models import Exam, Question
 from app.quiz.forms import CertificationForm, ExamForm, QuestionForm
 from app.admin.models import User
@@ -60,3 +61,13 @@ def launch_exam(exam_id):
     # This could involve redirecting to an exam page, loading exam questions, etc.
     return render_template('quiz/exam_page.html', exam_id=exam_id)
 
+
+@bp.route('/start_exam/<exam_id>')
+def start_exam(exam_id):
+    exam_data = get_exam_with_questions(exam_id)
+    if not exam_data:
+        flash("Exam not found!", "danger")
+        return redirect(url_for('quiz.examlist'))
+
+    # Pass this data to your template
+    return render_template('home/start_exam.html', exam_data=exam_data)

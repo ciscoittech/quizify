@@ -70,39 +70,82 @@
 
           <!-- Enrolled Exams Section -->
           <div class="row">
-                <div class="card-body px-0 pb-2">
-                  <div class="table-responsive">
-                    <table class="table table-flush" id="enrolled-exams-list">
-                      <thead class="thead-light">
-                        <tr>
-                          <th>Exam Name</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for exam in enrolled_exams %}
-                        <tr>
-                          <td>{{ exam.name }}</td>
-                          <td>{{ exam.description }}</td>
-                          <td class="text-center">
-                            <!-- Enroll Button -->
-                            <a
-                              href="{{ url_for('quiz.enroll_exam', exam_id=exam.id) }}"
-                              class="btn btn-primary"
-                              >Launch Exam</a
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive">
+                <table class="table table-flush" id="enrolled-exams-list">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>Exam Name</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for exam in enrolled_exams %}
+                    <tr>
+                      <td>{{ exam.name }}</td>
+                      <td>{{ exam.description }}</td>
+                      <td class="text-center">
+                        <!-- Enroll Button -->
+                        <a
+                          href="javascript:void(0);"
+                          class="btn btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target="#examModal-{{ exam.id }}"
+                          >Launch Exam</a
+                        >
+                      </td>
+                    </tr>
+                    <!-- Modal for Exam Launch -->
+                    <div
+                      class="modal fade"
+                      id="examModal-{{ exam.id }}"
+                      tabindex="-1"
+                      aria-labelledby="examModalLabel-{{ exam.id }}"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5
+                              class="modal-title"
+                              id="examModalLabel-{{ exam.id }}"
                             >
-                          </td>
-                        </tr>
-                        <td>
-
-                        </td>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              
-            
+                              {{ exam.name }}
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            {{ exam.description }}
+                            <!-- Add any other exam details you want to show -->
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Exit
+                            </button>
+                            <a
+                              href="{{ url_for('quiz.start_exam', exam_id=exam.id) }}"
+                              class="btn btn-primary"
+                              >Start Exam</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <td></td>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           {% include 'includes/footer.html' %}

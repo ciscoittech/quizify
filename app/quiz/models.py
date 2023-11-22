@@ -1,10 +1,12 @@
 import mongoengine as me
 
+
 # Option Embedded Document
 class Option(me.EmbeddedDocument):
     text = me.StringField(required=True)
     is_correct = me.BooleanField(default=False)
     explanation = me.StringField()
+
 
 # Question Embedded Document
 class Question(me.EmbeddedDocument):
@@ -13,11 +15,13 @@ class Question(me.EmbeddedDocument):
     difficulty = me.StringField(choices=('Easy', 'Medium', 'Hard'))
     explanation = me.StringField()
 
+
 # Subsection Embedded Document
 class Subsection(me.EmbeddedDocument):
     name = me.StringField(required=True)
     description = me.StringField()
     questions = me.ListField(me.EmbeddedDocumentField(Question))
+
 
 # Exam Document
 class Exam(me.Document):
@@ -31,6 +35,7 @@ class Exam(me.Document):
     issuing_organization = me.StringField()
     is_active = me.BooleanField(default=True)
     subsections = me.ListField(me.EmbeddedDocumentField(Subsection))
+
 
 # Optionally, connect signals for pre_delete actions
 # me.signals.pre_delete.connect(Exam.pre_delete, sender=Exam)
@@ -52,4 +57,3 @@ class LeaderboardEntry(me.Document):
             '-average_score'
         ]
     }
-

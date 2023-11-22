@@ -11,6 +11,14 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+    # Flask-Session configuration to use MongoDB
+    app.config['SESSION_TYPE'] = 'mongodb'
+    app.config['SESSION_MONGODB'] = me.connect('quizifyprov1', host='localhost', port=27017)
+    app.config['SESSION_MONGODB_DB'] = 'flask_session'
+    app.config['SESSION_MONGODB_COLLECT'] = 'sessions'
+
+
+
     # Blueprints registration
     from app.auth import bp as auth_bp
     from app.admin import bp as admin_bp
