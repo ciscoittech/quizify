@@ -10,7 +10,7 @@ from app.quiz import models as quiz_models
 class User(me.Document, UserMixin):
     email = me.StringField(required=True, unique=True)
     username = me.StringField(required=True, unique=True)
-    password_hash = me.StringField(required=True)
+    password_hash = me.StringField(required=False)
     first_name = me.StringField()
     last_name = me.StringField()
     created_at = me.DateTimeField(auto_now_add=True)
