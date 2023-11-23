@@ -3,11 +3,10 @@ from pymongo import MongoClient
 
 def get_exam_with_questions(exam_id):
     client = MongoClient('localhost', 27017)
-    db = client.your_database_name  # Replace with your actual database name
+    db = 'quizifyprov1'  # Replace with your actual database name
 
-    # Ensure exam_id is a valid ObjectId
     if not ObjectId.is_valid(exam_id):
-        return None  # or raise an exception
+        return None  # Handle invalid ObjectId
 
     pipeline = [
         {"$match": {"_id": ObjectId(exam_id)}},
@@ -15,6 +14,5 @@ def get_exam_with_questions(exam_id):
         # Further stages as needed
     ]
 
-    result = db.exams.aggregate(pipeline)  # Corrected to db.exams
+    result = db.exams.aggregate(pipeline)
     return list(result)
-
