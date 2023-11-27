@@ -1,6 +1,7 @@
 from flask import Flask, session
 from flask_login import LoginManager
 import mongoengine as me
+from flask_session import Session
 # import certifi
 from config import Config
 import os

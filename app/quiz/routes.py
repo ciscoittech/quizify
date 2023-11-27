@@ -62,12 +62,70 @@ def launch_exam(exam_id):
     return render_template('quiz/exam_page.html', exam_id=exam_id)
 
 
-@bp.route('/start_exam/<exam_id>')
+from flask import request, session, flash, redirect, url_for, render_template
+from .forms import QuestionForm  # Make sure to import your QuestionForm
+
+from flask import request, session, flash, redirect, url_for, render_template
+from .forms import QuestionForm  # Make sure to import your QuestionForm
+
+@bp.route('/start_exam/<exam_id>', methods=['GET', 'POST'])
 def start_exam(exam_id):
     exam_data = get_exam_with_questions(exam_id)
     if not exam_data:
         flash("Exam not found!", "danger")
         return redirect(url_for('quiz.examlist'))
 
-    # Pass this data to your template
-    return render_template('home/start_exam.html', exam_data=exam_data)
+    exam = exam_data
+    questions = []
+    for subsection in exam.get('subsections', []):
+        questions.extend(subsection.get('questions', []))
+
+    # Initialize or update current question index
+    if 'current_question_index' not in session:
+        session['current_question_index'] = 0
+    current_question_index = session['current_question_index']
+    current_question = questions[current_question_index]
+
+    form = QuestionForm()
+    if form.validate_on_submit():
+        action = request.form.get('submit_action')
+
+        if action == 'Submit & Next' and current_question_index < len(questions) - 1:
+            session['current_question_index'] += 1
+        elif action == 'Back' and current_question_index > 0:
+            session['current_question_index'] -= 1
+        elif action == 'End Exam':
+            # Logic to handle exam submission
+            # ...
+
+        # Redirect to refresh the page and show the next/previous question
+    return redirect(url_for('quiz.start_exam', exam_id=exam_id))
+
+    # Re-fetch the current question in case index was updated
+    current_question_index = session['current_question_index']
+    current_question = questions[current_question_index]
+    
+    # Populate form choices based on current question
+    # This depends on how your QuestionForm is set up
+    # form.choices.choices = [(option.text, option.text) for option in current_question.options]
+
+    return render_template('home/start_exam.html', exam=exam, question=current_question, form=form)
+
+
+
+
+
+@bp.route('/submit_exam/<exam_id>', methods=['POST'])
+def submit_exam(exam_id):
+    # Retrieve submitted answers from the form
+    # This is a dummy example; you'll need to adjust it based on your form structure
+    answers = request.form
+
+    # Process the answers
+    # Here, you would typically check the answers against the correct ones
+    # and calculate the user's score, record the results, etc.
+
+    # Redirect to a results page or another appropriate page
+    # For now, redirecting back to the exam list
+    flash('Exam submitted successfully!', 'success')
+    return redirect(url_for('quiz.examlist'))

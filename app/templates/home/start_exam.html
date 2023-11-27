@@ -1,42 +1,43 @@
-{% extends "layouts/base.html" %}
-
-{% block title %} Template {% endblock %} 
+{% extends "layouts/base.html" %} {% block title %} Start Exam {% endblock title%}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
-
+{% block stylesheets %} {% endblock stylesheets %}
+<!-- Add any specific stylesheets here -->
 {% block content %}
 <div class="container mt-4">
-    <h2>{{ exam.name }}</h2>
-    <form action="{{ url_for('quiz.submit_exam', exam_id=exam.id) }}" method="post">
-        {% for question in questions %}
-        <div class="mb-3">
-            <label class="form-label">{{ loop.index }}. {{ question.text }}</label>
-            {% for option in question.options %}
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="question-{{ loop.parent.index }}" id="option-{{ loop.parent.index }}-{{ loop.index }}" value="{{ option.text }}">
-                <label class="form-check-label" for="option-{{ loop.parent.index }}-{{ loop.index }}">
-                    {{ option.text }}
-                </label>
-            </div>
-            {% endfor %}
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Question {{ current_question_index + 1 }}</h4>
+            <p class="card-category">{{ current_question.text }}</p>
         </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Submit Exam</button>
-    </form>
+        <div class="card-body">
+            <form action="{{ url_for('quiz.submit_answer', exam_id=exam._id['$oid'], question_index=current_question_index) }}" method="post">
+                {% for option in current_question.options %}
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="answer" value="{{ option.text }}">
+                        {{ option.text }}
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+                {% endfor %}
+                <div class="mt-3">
+                    {% if current_question_index > 0 %}
+                    <button type="submit" name="action" value="back" class="btn btn-info">Back</button>
+                    {% endif %}
+                    {% if current_question_index < questions|length - 1 %}
+                    <button type="submit" name="action" value="next" class="btn btn-primary">Next</button>
+                    {% else %}
+                    <button type="submit" name="action" value="submit" class="btn btn-success">Submit Exam</button>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
-
-
-
-
-
-
-    {% include 'includes/footer.html' %}
-
-  </div>
-
-{% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}{% endblock javascripts %}
