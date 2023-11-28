@@ -1,0 +1,242 @@
+{
+    "questions": [
+      {
+        "text": "Which of the following best describes a 'Trojan Horse' in terms of computer security?",
+        "options": [
+          {
+            "text": "A piece of code that replicates by attaching itself to other programs.",
+            "is_correct": false
+          },
+          {
+            "text": "A program that appears legitimate but performs malicious actions.",
+            "is_correct": true,
+            "explanation": "A 'Trojan Horse' is a type of malware that disguises itself as legitimate software but performs malicious activities once executed."
+          },
+          {
+            "text": "A software program that allows unauthorized remote access to a computer.",
+            "is_correct": false
+          },
+          {
+            "text": "A self-replicating malware that spreads across networks.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Trojan Horses are deceptive software, appearing harmless to induce users to install them, but then perform harmful actions."
+      },
+      {
+        "text": "What is a Zero-Day exploit?",
+        "options": [
+          {
+            "text": "An attack that targets system vulnerabilities after they have been patched.",
+            "is_correct": false
+          },
+          {
+            "text": "An attack that is detected and mitigated on the same day it occurs.",
+            "is_correct": false
+          },
+          {
+            "text": "An attack that exploits a previously unknown vulnerability in a software or hardware.",
+            "is_correct": true,
+            "explanation": "A Zero-Day exploit targets a vulnerability that is unknown or unaddressed by those who should be interested in mitigating the vulnerability."
+          },
+          {
+            "text": "An attack that shuts down a system for a full day.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Zero-Day exploits are dangerous because they take advantage of vulnerabilities before developers have the opportunity to address them."
+      },
+      {
+        "text": "What is the main purpose of a ransomware attack?",
+        "options": [
+          {
+            "text": "To steal sensitive information from a victim's computer.",
+            "is_correct": false
+          },
+          {
+            "text": "To encrypt a victim’s data and demand payment for the decryption key.",
+            "is_correct": true,
+            "explanation": "Ransomware is a type of malicious software designed to block access to a computer system until a sum of money is paid."
+          },
+          {
+            "text": "To gain unauthorized access to a network.",
+            "is_correct": false
+          },
+          {
+            "text": "To create a backdoor into a security system.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Ransomware attacks encrypt the victim's data and demand payment, often in cryptocurrency, for the decryption key."
+      },
+      {
+        "text": "Which of the following best defines a 'Rootkit'?",
+        "options": [
+          {
+            "text": "Malware that encrypts files and demands a ransom.",
+            "is_correct": false
+          },
+          {
+            "text": "Software that allows for the creation and management of virtual machines.",
+            "is_correct": false
+          },
+          {
+            "text": "A set of software tools that enable unauthorized access and control over a computer system without being detected.",
+            "is_correct": true,
+            "explanation": "Rootkits are a type of malicious software designed to gain unauthorized access to a computer while hiding its presence."
+          },
+          {
+            "text": "A program that replicates itself and spreads to other computers.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Rootkits are dangerous because they can hide their existence and maintain privileged access to a computer."
+      },
+      {
+        "text": "What is 'Spoofing' in the context of network security?",
+        "options": [
+          {
+            "text": "Sending emails from a forged sender address.",
+            "is_correct": false
+          },
+          {
+            "text": "Intercepting and altering communications between two parties.",
+            "is_correct": false
+          },
+          {
+            "text": "Impersonating another device or user on a network to launch attacks against network hosts.",
+            "is_correct": true,
+            "explanation": "Spoofing involves pretending to be another device or user to gain unauthorized access to or disrupt the operations of a network."
+          },
+          {
+            "text": "Encrypting data to prevent unauthorized access.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Spoofing can take many forms, like IP, email, or ARP spoofing, each involving impersonation to deceive users or systems."
+      },
+      {
+        "text": "Which attack involves overwhelming a service with too much data, causing it to crash?",
+        "options": [
+          {
+            "text": "SQL Injection",
+            "is_correct": false
+          },
+          {
+            "text": "Buffer Overflow",
+            "is_correct": true,
+            "explanation": "Buffer overflow attacks occur when a program or process tries to store more data in a buffer (temporary data storage area) than it was intended to hold."
+          },
+          {
+            "text": "Cross-Site Scripting (XSS)",
+            "is_correct": false
+          },
+          {
+            "text": "Phishing",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "In a buffer overflow attack, the excess data often contains malicious code intended to execute specific actions, leading to a system crash or takeover."
+      },
+      {
+        "text": "What is the primary purpose of a firewall in network security?",
+        "options": [
+          {
+            "text": "To detect and prevent unauthorized access to or from a private network.",
+            "is_correct": true,
+            "explanation": "Firewalls are network security devices that monitor and filter incoming and outgoing network traffic based on an organization's previously established security policies."
+          },
+          {
+            "text": "To encrypt data transmitted over the internet.",
+            "is_correct": false
+          },
+          {
+            "text": "To scan for malware in real time.",
+            "is_correct": false
+          },
+          {
+            "text": "To serve as a physical barrier against intruders.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Firewalls act as a barrier between a trusted network and untrusted networks, such as the internet, and are a first line of defense in network security."
+      },
+      {
+        "text": "What is 'Social Engineering' in the context of cybersecurity?",
+        "options": [
+          {
+            "text": "The use of technology to automate security tasks.",
+            "is_correct": false
+          },
+          {
+            "text": "The study of cryptographic systems.",
+            "is_correct": false
+          },
+          {
+            "text": "The manipulation of people into performing actions or divulging confidential information.",
+            "is_correct": true,
+            "explanation": "Social engineering is a tactic that adversaries use to trick you into revealing sensitive information. They can solicit a monetary payment or gain access to your confidential data."
+          },
+          {
+            "text": "The process of improving network security through hardware upgrades.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Social engineering attacks exploit human psychology, rather than using technical hacking methods, to gain access to systems or data."
+      },
+      {
+        "text": "What does 'Adware' typically do?",
+        "options": [
+          {
+            "text": "Encrypts the user's data and demands a ransom for the decryption key.",
+            "is_correct": false
+          },
+          {
+            "text": "Gains unauthorized access to a computer and remains undetected.",
+            "is_correct": false
+          },
+          {
+            "text": "Automatically displays or downloads advertising material when a user is online.",
+            "is_correct": true,
+            "explanation": "Adware is a form of malware that automatically delivers advertisements. It is a common method for software developers to generate revenue."
+          },
+          {
+            "text": "Steals sensitive information like credit card numbers.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Adware can be annoying and intrusive, and it can sometimes be bundled with other malicious software."
+      },
+      {
+        "text": "What is the main characteristic of 'Spyware'?",
+        "options": [
+          {
+            "text": "It encrypts user data and demands a ransom.",
+            "is_correct": false
+          },
+          {
+            "text": "It advertises products to the user.",
+            "is_correct": false
+          },
+          {
+            "text": "It secretly gathers information about a person or organization without their knowledge.",
+            "is_correct": true,
+            "explanation": "Spyware is a type of malicious software that is installed on a computing device without the end user's knowledge. It collects information about them and conveys it to interested parties."
+          },
+          {
+            "text": "It creates a duplicate of itself to spread to other devices.",
+            "is_correct": false
+          }
+    ]
+  }
+]
+}

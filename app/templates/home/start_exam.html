@@ -6,31 +6,27 @@
 {% block content %}
 <div class="container mt-4">
     <div class="card">
-        <div class="card-header card-header-primary">
-            <h4 class="card-title">Question {{ current_question_index + 1 }}</h4>
-            <p class="card-category">{{ current_question.text }}</p>
+        <div class="card-header">
+            <h4>Question {{ current_question_index + 1 }} of {{ questions|length }}</h4>
         </div>
         <div class="card-body">
-            <form action="{{ url_for('quiz.submit_answer', exam_id=exam._id['$oid'], question_index=current_question_index) }}" method="post">
-                {% for option in current_question.options %}
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <p>{{ question.text }}</p>
+                {% for option in question.options %}
                 <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="answer" value="{{ option.text }}">
-                        {{ option.text }}
-                        <span class="form-check-sign">
-                            <span class="check"></span>
-                        </span>
-                    </label>
+                    <input type="radio" name="answer" value="{{ option.text }}" id="option-{{ loop.index }}">
+                    <label for="option-{{ loop.index }}">{{ option.text }}</label>
                 </div>
                 {% endfor %}
                 <div class="mt-3">
                     {% if current_question_index > 0 %}
-                    <button type="submit" name="action" value="back" class="btn btn-info">Back</button>
+                    <button type="submit" name="submit_action" value="Back" class="btn btn-info">Back</button>
                     {% endif %}
                     {% if current_question_index < questions|length - 1 %}
-                    <button type="submit" name="action" value="next" class="btn btn-primary">Next</button>
+                    <button type="submit" name="submit_action" value="Submit & Next" class="btn btn-primary">Next Question</button>
                     {% else %}
-                    <button type="submit" name="action" value="submit" class="btn btn-success">Submit Exam</button>
+                    <button type="submit" name="submit_action" value="End Exam" class="btn btn-success">Submit Exam</button>
                     {% endif %}
                 </div>
             </form>

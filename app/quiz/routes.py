@@ -88,28 +88,23 @@ def start_exam(exam_id):
 
     form = QuestionForm()
     if form.validate_on_submit():
-        action = request.form.get('submit_action')
-
-        if action == 'Submit & Next' and current_question_index < len(questions) - 1:
+        if form.submit_next.data and current_question_index < len(questions) - 1:
             session['current_question_index'] += 1
-        elif action == 'Back' and current_question_index > 0:
+        elif form.submit_back.data and current_question_index > 0:
             session['current_question_index'] -= 1
-        elif action == 'End Exam':
-            # Logic to handle exam submission
-            # ...
+        elif form.submit_end.data:
+            # Logic to end the exam, process answers, etc.
+            return redirect(url_for('some_result_page'))
 
-        # Redirect to refresh the page and show the next/previous question
-    return redirect(url_for('quiz.start_exam', exam_id=exam_id))
+        return redirect(url_for('quiz.start_exam', exam_id=exam_id))
 
     # Re-fetch the current question in case index was updated
     current_question_index = session['current_question_index']
     current_question = questions[current_question_index]
-    
-    # Populate form choices based on current question
-    # This depends on how your QuestionForm is set up
-    # form.choices.choices = [(option.text, option.text) for option in current_question.options]
 
-    return render_template('home/start_exam.html', exam=exam, question=current_question, form=form)
+    return render_template('home/start_exam.html', exam=exam, question=current_question, form=form, current_question_index=current_question_index)
+
+
 
 
 
@@ -129,3 +124,8 @@ def submit_exam(exam_id):
     # For now, redirecting back to the exam list
     flash('Exam submitted successfully!', 'success')
     return redirect(url_for('quiz.examlist'))
+
+
+@bp.route('/submit_answer/<exam_id>/<int:question_index>', methods=['POST'])
+def submit_answer(exam_id, question_index):
+    pass

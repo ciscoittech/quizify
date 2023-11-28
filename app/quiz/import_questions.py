@@ -49,7 +49,7 @@ def import_data(exam_data):
     ).save()
 
 # Read data from JSON file
-with open('securityplus.json', 'r') as file:
+with open('seasy.json', 'r') as file:
     exam_data = json.load(file)
 
 # Import the data
