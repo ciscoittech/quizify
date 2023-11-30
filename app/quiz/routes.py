@@ -62,12 +62,6 @@ def launch_exam(exam_id):
     return render_template('quiz/exam_page.html', exam_id=exam_id)
 
 
-from flask import request, session, flash, redirect, url_for, render_template
-from .forms import QuestionForm  # Make sure to import your QuestionForm
-
-from flask import request, session, flash, redirect, url_for, render_template
-from .forms import QuestionForm  # Make sure to import your QuestionForm
-
 @bp.route('/start_exam/<exam_id>', methods=['GET', 'POST'])
 def start_exam(exam_id):
     exam_data = get_exam_with_questions(exam_id)
@@ -80,29 +74,46 @@ def start_exam(exam_id):
     for subsection in exam.get('subsections', []):
         questions.extend(subsection.get('questions', []))
 
-    # Initialize or update current question index
     if 'current_question_index' not in session:
         session['current_question_index'] = 0
+
     current_question_index = session['current_question_index']
     current_question = questions[current_question_index]
 
     form = QuestionForm()
     if form.validate_on_submit():
+        # Logic to handle user response - assuming we're storing answers in session
+        user_answers = session.get('user_answers', {})
+        user_answers[current_question_index] = form.choices.data
+        session['user_answers'] = user_answers
+
+        # Navigation logic
         if form.submit_next.data and current_question_index < len(questions) - 1:
             session['current_question_index'] += 1
         elif form.submit_back.data and current_question_index > 0:
             session['current_question_index'] -= 1
+        elif form.flag_question.data:
+            # Add flagging logic if necessary
+            # Example: Mark the current question as flagged
+            flagged_questions = session.get('flagged_questions', set())
+            flagged_questions.add(current_question_index)
+            session['flagged_questions'] = flagged_questions
         elif form.submit_end.data:
-            # Logic to end the exam, process answers, etc.
-            return redirect(url_for('some_result_page'))
+            # Process exam submission
+            # Example: Clear the session and redirect to a results page
+            session.pop('current_question_index', None)
+            session.pop('user_answers', None)
+            session.pop('flagged_questions', None)
+            return redirect(url_for('quiz.exam_results', exam_id=exam_id))
 
         return redirect(url_for('quiz.start_exam', exam_id=exam_id))
 
-    # Re-fetch the current question in case index was updated
     current_question_index = session['current_question_index']
     current_question = questions[current_question_index]
+    form.choices.choices = [(option['text'], option['text']) for option in current_question['options']]
 
-    return render_template('home/start_exam.html', exam=exam, question=current_question, form=form, current_question_index=current_question_index)
+    return render_template('home/start_exam.html', exam=exam, question=current_question, form=form, current_question_index=current_question_index, questions=questions)
+
 
 
 

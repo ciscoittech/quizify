@@ -14,247 +14,246 @@
       "description": "Focuses on identifying and mitigating various security threats and vulnerabilities.",
       "questions": [
         {
-        
-              "text": "What is the difference between a virus and a worm?",
-              "options": [
-                {
-                  "text": "A virus replicates itself, while a worm requires user action to spread.",
-                  "is_correct": false
-                },
-                {
-                  "text": "A virus requires user action to spread, while a worm replicates itself.",
-                  "is_correct": true,
-                  "explanation": "A virus needs user action to spread, such as opening a file. In contrast, a worm can replicate and spread independently."
-                },
-                {
-                  "text": "Both a virus and a worm do not require user action to spread.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Both a virus and a worm are the same in terms of spreading mechanisms.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "The primary difference lies in their method of spreading. Viruses need user action, whereas worms are more autonomous."
+          "text": "What is the difference between a virus and a worm?",
+          "options": [
+            {
+              "text": "A virus replicates itself, while a worm requires user action to spread.",
+              "is_correct": false
             },
             {
-              "text": "What does a phishing attack typically involve?",
-              "options": [
-                {
-                  "text": "Sending an email that appears to be from a legitimate source to trick users into providing sensitive information.",
-                  "is_correct": true,
-                  "explanation": "Phishing attacks often use deceptive emails to steal sensitive information by posing as trustworthy entities."
-                },
-                {
-                  "text": "Exploiting software vulnerabilities to gain unauthorized access.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Physically tailgating employees to gain building access.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Intercepting and altering communication between two parties.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "Phishing attacks typically use deceptive communications to trick users into divulging sensitive information."
+              "text": "A virus requires user action to spread, while a worm replicates itself.",
+              "is_correct": true,
+              "explanation": "A virus needs user action to spread, such as opening a file. In contrast, a worm can replicate and spread independently."
             },
             {
-              "text": "What is a Distributed Denial of Service (DDoS) attack?",
-              "options": [
-                {
-                  "text": "A single system flooding a network with excessive traffic.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Multiple systems working together to flood a network or server with excessive traffic.",
-                  "is_correct": true,
-                  "explanation": "A DDoS attack involves multiple compromised systems attacking a single target, causing denial of service for users of the targeted system."
-                },
-                {
-                  "text": "Encrypting a victim's files and demanding a ransom.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Exploiting vulnerabilities to steal data.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "DDoS attacks use multiple systems to flood the target with overwhelming traffic, disrupting its normal services."
+              "text": "Both a virus and a worm do not require user action to spread.",
+              "is_correct": false
             },
             {
-              "text": "What is SQL injection?",
-              "options": [
-                {
-                  "text": "Inserting malicious code into a network to disrupt its operations.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Injecting malicious SQL queries via input data from the client to the application.",
-                  "is_correct": true,
-                  "explanation": "SQL injection is a code injection technique used to attack data-driven applications by inserting malicious SQL statements into an entry field."
-                },
-                {
-                  "text": "Sending phishing emails to database administrators.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Physically damaging a server to compromise data.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "SQL injection attacks allow attackers to interfere with the queries an application makes to its database."
-            },
-            {
-              "text": "How does a Man-in-the-Middle (MitM) attack compromise communication?",
-              "options": [
-                {
-                  "text": "By physically intercepting a communication line.",
-                  "is_correct": false
-                },
-                {
-                  "text": "By encrypting messages between two parties.",
-                  "is_correct": false
-                },
-                {
-                  "text": "By secretly relaying and possibly altering the communication between two parties.",
-                  "is_correct": true,
-                  "explanation": "In a MitM attack, the attacker secretly intercepts and relays messages between two parties who believe they are directly communicating with each other."
-                },
-                {
-                  "text": "By sending spam emails to both parties.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "MitM attacks involve the attacker secretly relaying and potentially altering the communication between two parties who believe they are directly communicating."
-            },
-            {
-              "text": "What are the implications of a credential stuffing attack?",
-              "options": [
-                {
-                  "text": "Immediate system shutdown.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Unauthorized access using breached username and password pairs.",
-                  "is_correct": true,
-                  "explanation": "Credential stuffing attacks use previously breached username and password pairs to gain unauthorized access to user accounts."
-                },
-                {
-                  "text": "Encryption of user credentials.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Physical theft of credentials.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "Credential stuffing is a cyberattack method in which attackers use lists of compromised user credentials to breach into a system."
-            },
-            {
-              "text": "What is the purpose of a vulnerability scanner?",
-              "options": [
-                {
-                  "text": "To monitor network traffic in real-time.",
-                  "is_correct": false
-                },
-                {
-                  "text": "To filter spam from emails.",
-                  "is_correct": false
-                },
-                {
-                  "text": "To detect and classify system weaknesses in computers, networks, and communications equipment.",
-                  "is_correct": true,
-                  "explanation": "Vulnerability scanners are used to detect and classify system weaknesses in networks, computers, and communications equipment."
-                },
-                {
-                  "text": "To perform automated attacks against a network.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "Vulnerability scanners are crucial in identifying and assessing the vulnerabilities of systems and networks."
-            },
-            {
-              "text": "How do rogue access points pose a threat to network security?",
-              "options": [
-                {
-                  "text": "By providing faster internet access.",
-                  "is_correct": false
-                },
-                {
-                  "text": "By broadcasting an open Wi-Fi signal to intercept data.",
-                  "is_correct": true,
-                  "explanation": "Rogue access points can be used by attackers to intercept sensitive data transmitted over a network."
-                },
-                {
-                  "text": "By increasing the range of the network.",
-                  "is_correct": false
-                },
-                {
-                  "text": "By strengthening network security protocols.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "Rogue access points are unauthorized Wi-Fi access points that pose a security risk by potentially allowing attackers to intercept data."
-            },
-            {
-              "text": "What is a mobile code security issue?",
-              "options": [
-                {
-                  "text": "A mobile app that enhances device performance.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Unauthorized mobile charges.",
-                  "is_correct": false
-                },
-                {
-                  "text": "Malicious software that is distributed and executed on mobile devices.",
-                  "is_correct": true,
-                  "explanation": "Mobile code security issues refer to the vulnerabilities that arise when malicious software is distributed and executed on mobile devices."
-                },
-                {
-                  "text": "Physical damage to mobile devices.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "Mobile code security issues often involve the execution of malicious software on mobile devices, compromising security."
-            },
-            {
-              "text": "How does non-compliance with security policies increase organizational vulnerability?",
-              "options": [
-                {
-                  "text": "By improving the security posture.",
-                  "is_correct": false
-                },
-                {
-                  "text": "By reducing operational costs.",
-                  "is_correct": false
-                },
-                {
-                  "text": "By exposing the organization to potential legal liabilities and security breaches.",
-                  "is_correct": true,
-                  "explanation": "Non-compliance with security policies can expose an organization to various risks, including legal liabilities and increased vulnerability to security breaches."
-                },
-                {
-                  "text": "By enhancing employee productivity.",
-                  "is_correct": false
-                }
-              ],
-              "difficulty": "Easy",
-              "explanation": "Ignoring security policies often leads to weakened defenses, making an organization more susceptible to breaches and legal issues."
+              "text": "Both a virus and a worm are the same in terms of spreading mechanisms.",
+              "is_correct": false
             }
-          ]
+          ],
+          "difficulty": "Easy",
+          "explanation": "The primary difference lies in their method of spreading. Viruses need user action, whereas worms are more autonomous."
+        },
+        {
+          "text": "What does a phishing attack typically involve?",
+          "options": [
+            {
+              "text": "Sending an email that appears to be from a legitimate source to trick users into providing sensitive information.",
+              "is_correct": true,
+              "explanation": "Phishing attacks often use deceptive emails to steal sensitive information by posing as trustworthy entities."
+            },
+            {
+              "text": "Exploiting software vulnerabilities to gain unauthorized access.",
+              "is_correct": false
+            },
+            {
+              "text": "Physically tailgating employees to gain building access.",
+              "is_correct": false
+            },
+            {
+              "text": "Intercepting and altering communication between two parties.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "Phishing attacks typically use deceptive communications to trick users into divulging sensitive information."
+        },
+        {
+          "text": "What is a Distributed Denial of Service (DDoS) attack?",
+          "options": [
+            {
+              "text": "A single system flooding a network with excessive traffic.",
+              "is_correct": false
+            },
+            {
+              "text": "Multiple systems working together to flood a network or server with excessive traffic.",
+              "is_correct": true,
+              "explanation": "A DDoS attack involves multiple compromised systems attacking a single target, causing denial of service for users of the targeted system."
+            },
+            {
+              "text": "Encrypting a victim's files and demanding a ransom.",
+              "is_correct": false
+            },
+            {
+              "text": "Exploiting vulnerabilities to steal data.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "DDoS attacks use multiple systems to flood the target with overwhelming traffic, disrupting its normal services."
+        },
+        {
+          "text": "What is SQL injection?",
+          "options": [
+            {
+              "text": "Inserting malicious code into a network to disrupt its operations.",
+              "is_correct": false
+            },
+            {
+              "text": "Injecting malicious SQL queries via input data from the client to the application.",
+              "is_correct": true,
+              "explanation": "SQL injection is a code injection technique used to attack data-driven applications by inserting malicious SQL statements into an entry field."
+            },
+            {
+              "text": "Sending phishing emails to database administrators.",
+              "is_correct": false
+            },
+            {
+              "text": "Physically damaging a server to compromise data.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "SQL injection attacks allow attackers to interfere with the queries an application makes to its database."
+        },
+        {
+          "text": "How does a Man-in-the-Middle (MitM) attack compromise communication?",
+          "options": [
+            {
+              "text": "By physically intercepting a communication line.",
+              "is_correct": false
+            },
+            {
+              "text": "By encrypting messages between two parties.",
+              "is_correct": false
+            },
+            {
+              "text": "By secretly relaying and possibly altering the communication between two parties.",
+              "is_correct": true,
+              "explanation": "In a MitM attack, the attacker secretly intercepts and relays messages between two parties who believe they are directly communicating with each other."
+            },
+            {
+              "text": "By sending spam emails to both parties.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "MitM attacks involve the attacker secretly relaying and potentially altering the communication between two parties who believe they are directly communicating."
+        },
+        {
+          "text": "What are the implications of a credential stuffing attack?",
+          "options": [
+            {
+              "text": "Immediate system shutdown.",
+              "is_correct": false
+            },
+            {
+              "text": "Unauthorized access using breached username and password pairs.",
+              "is_correct": true,
+              "explanation": "Credential stuffing attacks use previously breached username and password pairs to gain unauthorized access to user accounts."
+            },
+            {
+              "text": "Encryption of user credentials.",
+              "is_correct": false
+            },
+            {
+              "text": "Physical theft of credentials.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "Credential stuffing is a cyberattack method in which attackers use lists of compromised user credentials to breach into a system."
+        },
+        {
+          "text": "What is the purpose of a vulnerability scanner?",
+          "options": [
+            {
+              "text": "To monitor network traffic in real-time.",
+              "is_correct": false
+            },
+            {
+              "text": "To filter spam from emails.",
+              "is_correct": false
+            },
+            {
+              "text": "To detect and classify system weaknesses in computers, networks, and communications equipment.",
+              "is_correct": true,
+              "explanation": "Vulnerability scanners are used to detect and classify system weaknesses in networks, computers, and communications equipment."
+            },
+            {
+              "text": "To perform automated attacks against a network.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "Vulnerability scanners are crucial in identifying and assessing the vulnerabilities of systems and networks."
+        },
+        {
+          "text": "How do rogue access points pose a threat to network security?",
+          "options": [
+            {
+              "text": "By providing faster internet access.",
+              "is_correct": false
+            },
+            {
+              "text": "By broadcasting an open Wi-Fi signal to intercept data.",
+              "is_correct": true,
+              "explanation": "Rogue access points can be used by attackers to intercept sensitive data transmitted over a network."
+            },
+            {
+              "text": "By increasing the range of the network.",
+              "is_correct": false
+            },
+            {
+              "text": "By strengthening network security protocols.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "Rogue access points are unauthorized Wi-Fi access points that pose a security risk by potentially allowing attackers to intercept data."
+        },
+        {
+          "text": "What is a mobile code security issue?",
+          "options": [
+            {
+              "text": "A mobile app that enhances device performance.",
+              "is_correct": false
+            },
+            {
+              "text": "Unauthorized mobile charges.",
+              "is_correct": false
+            },
+            {
+              "text": "Malicious software that is distributed and executed on mobile devices.",
+              "is_correct": true,
+              "explanation": "Mobile code security issues refer to the vulnerabilities that arise when malicious software is distributed and executed on mobile devices."
+            },
+            {
+              "text": "Physical damage to mobile devices.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "Mobile code security issues often involve the execution of malicious software on mobile devices, compromising security."
+        },
+        {
+          "text": "How does non-compliance with security policies increase organizational vulnerability?",
+          "options": [
+            {
+              "text": "By improving the security posture.",
+              "is_correct": false
+            },
+            {
+              "text": "By reducing operational costs.",
+              "is_correct": false
+            },
+            {
+              "text": "By exposing the organization to potential legal liabilities and security breaches.",
+              "is_correct": true,
+              "explanation": "Non-compliance with security policies can expose an organization to various risks, including legal liabilities and increased vulnerability to security breaches."
+            },
+            {
+              "text": "By enhancing employee productivity.",
+              "is_correct": false
+            }
+          ],
+          "difficulty": "Easy",
+          "explanation": "Ignoring security policies often leads to weakened defenses, making an organization more susceptible to breaches and legal issues."
+        }
+      ]
         }
       ]
     }

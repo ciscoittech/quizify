@@ -1,0 +1,767 @@
+{
+    "questions": [
+      {
+        "text": "What is the difference between a virus and a worm?",
+        "options": [
+          {
+            "text": "A virus replicates itself, while a worm requires user action to spread.",
+            "is_correct": false
+          },
+          {
+            "text": "A virus requires user action to spread, while a worm replicates itself.",
+            "is_correct": true,
+            "explanation": "A virus needs user action to spread, such as opening a file. In contrast, a worm can replicate and spread independently."
+          },
+          {
+            "text": "Both a virus and a worm do not require user action to spread.",
+            "is_correct": false
+          },
+          {
+            "text": "Both a virus and a worm are the same in terms of spreading mechanisms.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "The primary difference lies in their method of spreading. Viruses need user action, whereas worms are more autonomous."
+      },
+      {
+        "text": "What does a phishing attack typically involve?",
+        "options": [
+          {
+            "text": "Sending an email that appears to be from a legitimate source to trick users into providing sensitive information.",
+            "is_correct": true,
+            "explanation": "Phishing attacks often use deceptive emails to steal sensitive information by posing as trustworthy entities."
+          },
+          {
+            "text": "Exploiting software vulnerabilities to gain unauthorized access.",
+            "is_correct": false
+          },
+          {
+            "text": "Physically tailgating employees to gain building access.",
+            "is_correct": false
+          },
+          {
+            "text": "Intercepting and altering communication between two parties.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Phishing attacks typically use deceptive communications to trick users into divulging sensitive information."
+      },
+      {
+        "text": "What is a Distributed Denial of Service (DDoS) attack?",
+        "options": [
+          {
+            "text": "A single system flooding a network with excessive traffic.",
+            "is_correct": false
+          },
+          {
+            "text": "Multiple systems working together to flood a network or server with excessive traffic.",
+            "is_correct": true,
+            "explanation": "A DDoS attack involves multiple compromised systems attacking a single target, causing denial of service for users of the targeted system."
+          },
+          {
+            "text": "Encrypting a victim's files and demanding a ransom.",
+            "is_correct": false
+          },
+          {
+            "text": "Exploiting vulnerabilities to steal data.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "DDoS attacks use multiple systems to flood the target with overwhelming traffic, disrupting its normal services."
+      },
+      {
+        "text": "What is SQL injection?",
+        "options": [
+          {
+            "text": "Inserting malicious code into a network to disrupt its operations.",
+            "is_correct": false
+          },
+          {
+            "text": "Injecting malicious SQL queries via input data from the client to the application.",
+            "is_correct": true,
+            "explanation": "SQL injection is a code injection technique used to attack data-driven applications by inserting malicious SQL statements into an entry field."
+          },
+          {
+            "text": "Sending phishing emails to database administrators.",
+            "is_correct": false
+          },
+          {
+            "text": "Physically damaging a server to compromise data.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "SQL injection attacks allow attackers to interfere with the queries an application makes to its database."
+      },
+      {
+        "text": "How does a Man-in-the-Middle (MitM) attack compromise communication?",
+        "options": [
+          {
+            "text": "By physically intercepting a communication line.",
+            "is_correct": false
+          },
+          {
+            "text": "By encrypting messages between two parties.",
+            "is_correct": false
+          },
+          {
+            "text": "By secretly relaying and possibly altering the communication between two parties.",
+            "is_correct": true,
+            "explanation": "In a MitM attack, the attacker secretly intercepts and relays messages between two parties who believe they are directly communicating with each other."
+          },
+          {
+            "text": "By sending spam emails to both parties.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "MitM attacks involve the attacker secretly relaying and potentially altering the communication between two parties who believe they are directly communicating."
+      },
+      {
+        "text": "What are the implications of a credential stuffing attack?",
+        "options": [
+          {
+            "text": "Immediate system shutdown.",
+            "is_correct": false
+          },
+          {
+            "text": "Unauthorized access using breached username and password pairs.",
+            "is_correct": true,
+            "explanation": "Credential stuffing attacks use previously breached username and password pairs to gain unauthorized access to user accounts."
+          },
+          {
+            "text": "Encryption of user credentials.",
+            "is_correct": false
+          },
+          {
+            "text": "Physical theft of credentials.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Credential stuffing is a cyberattack method in which attackers use lists of compromised user credentials to breach into a system."
+      },
+      {
+        "text": "What is the purpose of a vulnerability scanner?",
+        "options": [
+          {
+            "text": "To monitor network traffic in real-time.",
+            "is_correct": false
+          },
+          {
+            "text": "To filter spam from emails.",
+            "is_correct": false
+          },
+          {
+            "text": "To detect and classify system weaknesses in computers, networks, and communications equipment.",
+            "is_correct": true,
+            "explanation": "Vulnerability scanners are used to detect and classify system weaknesses in networks, computers, and communications equipment."
+          },
+          {
+            "text": "To perform automated attacks against a network.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Vulnerability scanners are crucial in identifying and assessing the vulnerabilities of systems and networks."
+      },
+      {
+        "text": "How do rogue access points pose a threat to network security?",
+        "options": [
+          {
+            "text": "By providing faster internet access.",
+            "is_correct": false
+          },
+          {
+            "text": "By broadcasting an open Wi-Fi signal to intercept data.",
+            "is_correct": true,
+            "explanation": "Rogue access points can be used by attackers to intercept sensitive data transmitted over a network."
+          },
+          {
+            "text": "By increasing the range of the network.",
+            "is_correct": false
+          },
+          {
+            "text": "By strengthening network security protocols.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Rogue access points are unauthorized Wi-Fi access points that pose a security risk by potentially allowing attackers to intercept data."
+      },
+      {
+        "text": "What is a mobile code security issue?",
+        "options": [
+          {
+            "text": "A mobile app that enhances device performance.",
+            "is_correct": false
+          },
+          {
+            "text": "Unauthorized mobile charges.",
+            "is_correct": false
+          },
+          {
+            "text": "Malicious software that is distributed and executed on mobile devices.",
+            "is_correct": true,
+            "explanation": "Mobile code security issues refer to the vulnerabilities that arise when malicious software is distributed and executed on mobile devices."
+          },
+          {
+            "text": "Physical damage to mobile devices.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Mobile code security issues often involve the execution of malicious software on mobile devices, compromising security."
+      },
+      {
+        "text": "How does non-compliance with security policies increase organizational vulnerability?",
+        "options": [
+          {
+            "text": "By improving the security posture.",
+            "is_correct": false
+          },
+          {
+            "text": "By reducing operational costs.",
+            "is_correct": false
+          },
+          {
+            "text": "By exposing the organization to potential legal liabilities and security breaches.",
+            "is_correct": true,
+            "explanation": "Non-compliance with security policies can expose an organization to various risks, including legal liabilities and increased vulnerability to security breaches."
+          },
+          {
+            "text": "By enhancing employee productivity.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Ignoring security policies often leads to weakened defenses, making an organization more susceptible to breaches and legal issues."
+      }
+    ]
+  }
+
+
+  {
+    "questions": [
+      {
+        "text": "What type of attack occurs when an attacker intercepts a user's session to gain unauthorized access to a system or network?",
+        "options": [
+          {
+            "text": "Phishing Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Session Hijacking",
+            "is_correct": true,
+            "explanation": "Session hijacking involves an attacker taking control of a user's session to gain unauthorized access to information or services."
+          },
+          {
+            "text": "DDoS Attack",
+            "is_correct": false
+          },
+          {
+            "text": "SQL Injection Attack",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Session hijacking is a security attack on a user session over a protected network."
+      },
+      {
+        "text": "Which attack technique involves inserting a backdoor into a software update?",
+        "options": [
+          {
+            "text": "Supply Chain Attack",
+            "is_correct": true,
+            "explanation": "Supply chain attacks involve compromising a supplier's software to distribute malware through legitimate software updates."
+          },
+          {
+            "text": "Ransomware Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Spear Phishing",
+            "is_correct": false
+          },
+          {
+            "text": "Brute Force Attack",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Supply chain attacks target less-secure elements in the supply network to distribute malware."
+      },
+      {
+        "text": "Which of the following is a characteristic of a zero-day exploit?",
+        "options": [
+          {
+            "text": "An attack that targets a vulnerability on the same day it is discovered.",
+            "is_correct": false
+          },
+          {
+            "text": "An attack that targets a vulnerability before the vendor has issued a patch.",
+            "is_correct": true,
+            "explanation": "Zero-day exploits take advantage of a security vulnerability before it's known to the vendor and a patch is available."
+          },
+          {
+            "text": "An attack that is announced publicly on the day it is discovered.",
+            "is_correct": false
+          },
+          {
+            "text": "An attack that only works on the first day of each month.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Zero-day exploits are dangerous because they take advantage of vulnerabilities before they are known and patched."
+      },
+      {
+        "text": "What type of attack uses large numbers of compromised computers to send spam or malware to users?",
+        "options": [
+          {
+            "text": "Botnet",
+            "is_correct": true,
+            "explanation": "Botnets are networks of compromised computers, often used to send spam or malware."
+          },
+          {
+            "text": "DDoS Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Phishing Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Man-in-the-Middle Attack",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "Botnets can be used to perform distributed denial-of-service attacks, steal data, and send spam."
+      },
+      {
+        "text": "What is the primary goal of a ransomware attack?",
+        "options": [
+          {
+            "text": "To encrypt a victim's files and demand a ransom for the decryption key.",
+            "is_correct": true,
+            "explanation": "Ransomware encrypts the victim's data and demands payment for the decryption key."
+          },
+          {
+            "text": "To steal sensitive information from a victim's computer.",
+            "is_correct": false
+          },
+          {
+            "text": "To crash the victim's computer system.",
+            "is_correct": false
+          },
+          {
+            "text": "To gain unauthorized access to a network.",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Easy",
+        "explanation": "The main purpose of ransomware is to extort money from victims by denying them access to their files or systems."
+      }
+    ]
+    }
+```
+{
+    "questions": [
+      {
+        "text": "Which type of attack involves intercepting and altering communications between two parties without their knowledge?",
+        "options": [
+          {
+            "text": "DDoS Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Phishing Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Man-in-the-Middle Attack",
+            "is_correct": true,
+            "explanation": "Man-in-the-Middle attacks involve secretly intercepting and possibly altering the communication between two parties."
+          },
+          {
+            "text": "SQL Injection Attack",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "In a Man-in-the-Middle attack, the attacker inserts themselves into a conversation between two parties, impersonates both parties and gains access to information that the two parties were trying to send to each other."
+      },
+      {
+        "text": "What is a common method used in Cross-Site Scripting (XSS) attacks?",
+        "options": [
+          {
+            "text": "Encrypting data on the victim's system",
+            "is_correct": false
+          },
+          {
+            "text": "Injecting malicious scripts into webpages viewed by other users",
+            "is_correct": true,
+            "explanation": "XSS attacks involve injecting malicious scripts into otherwise benign and trusted web pages."
+          },
+          {
+            "text": "Exploiting vulnerabilities in software",
+            "is_correct": false
+          },
+          {
+            "text": "Intercepting data during transmission",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "In Cross-Site Scripting attacks, attackers exploit vulnerabilities in web applications to inject malicious scripts, which are then executed by unsuspecting users who visit the website."
+      },
+      {
+        "text": "Which type of security attack exploits vulnerabilities in the software before the vendor has the opportunity to release a patch?",
+        "options": [
+          {
+            "text": "Phishing Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Zero-Day Exploit",
+            "is_correct": true,
+            "explanation": "Zero-Day Exploits are attacks that occur on the same day a weakness is discovered in software, before a patch is available."
+          },
+          {
+            "text": "DDoS Attack",
+            "is_correct": false
+          },
+          {
+            "text": "SQL Injection Attack",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "Zero-Day exploits are particularly dangerous because they exploit vulnerabilities before the software vendor is aware of them or has had time to issue a patch."
+      },
+      {
+        "text": "What is the primary purpose of a Trojan horse in cyber security?",
+        "options": [
+          {
+            "text": "To disrupt network services",
+            "is_correct": false
+          },
+          {
+            "text": "To encrypt files for ransom",
+            "is_correct": false
+          },
+          {
+            "text": "To disguise malware as legitimate software",
+            "is_correct": true,
+            "explanation": "A Trojan horse is a type of malware that is often disguised as legitimate software, used by cyber-thieves and hackers to trick users into loading and executing the malware on their systems."
+          },
+          {
+            "text": "To create a backdoor to a system",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "Trojans are malicious programs that misrepresent themselves to appear useful, but actually, facilitate unauthorized access to the user's system."
+      },
+      {
+        "text": "In the context of cybersecurity, what is 'tailgating'?",
+        "options": [
+          {
+            "text": "A type of DDoS attack",
+            "is_correct": false
+          },
+          {
+            "text": "Following someone closely to bypass security without being noticed",
+            "is_correct": true,
+            "explanation": "Tailgating in cybersecurity refers to the practice of an unauthorized person following an authorized person to enter a secured premise without being noticed."
+          },
+          {
+            "text": "Sending emails from a known contact's email address",
+            "is_correct": false
+          },
+          {
+            "text": "Tracking someone's online activity",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "Tailgating is a physical security breach that occurs when an unauthorized person follows an authorized individual to enter a secured building or area."
+      },
+      {
+        "text": "What is spear phishing?",
+        "options": [
+          {
+            "text": "A broad attempt to trick individuals into revealing sensitive information",
+            "is_correct": false
+          },
+          {
+            "text": "A highly targeted attempt to steal sensitive information from a specific individual",
+            "is_correct": true,
+            "explanation": "Spear phishing is a more targeted version of phishing, where the attacker knows some information about their victim and uses it to better tailor their deception."
+          },
+          {
+            "text": "A type of software that protects against phishing attacks",
+            "is_correct": false
+          },
+          {
+            "text": "A physical attack to steal someone's personal belongings",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "Spear phishing is a targeted form of phishing, where attackers focus on specific individuals or organizations with tailored messages."
+      },
+      {
+        "text": "What is the main purpose of a penetration test in network security?",
+        "options": [
+          {
+            "text": "To spread malware within the network",
+            "is_correct": false
+          },
+          {
+            "text": "To test the network's ability to withstand a DDoS attack",
+            "is_correct": false
+          },
+          {
+            "text": "To identify vulnerabilities in the network's defenses",
+            "is_correct": true,
+            "explanation": "Penetration testing is designed to simulate an attack on a network to identify vulnerabilities and assess the network's defenses."
+          },
+          {
+            "text": "To monitor the network's traffic",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "Penetration testing (or pen testing) is a simulated cyber attack against your computer system to check for exploitable vulnerabilities."
+      },
+      {
+        "text": "Which of the following best describes a 'watering hole' attack?",
+        "options": [
+          {
+            "text": "An attack where a website frequently visited by the target audience is compromised",
+            "is_correct": true,
+            "explanation": "In a watering hole attack, attackers compromise a website frequently visited by the target group and use it to distribute malware."
+          },
+          {
+            "text": "An attack where the attacker physically damages a computer or network",
+            "is_correct": false
+          },
+          {
+            "text": "An attack where emails are sent from a compromised corporate email account",
+            "is_correct": false
+          },
+          {
+            "text": "An attack where the attacker intercepts data from a public Wi-Fi network",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Medium",
+        "explanation": "Watering hole attacks target specific groups of users by infecting websites that members of the group are known to visit."
+      }
+    ]
+  }
+  
+
+
+  {
+    "questions": [
+      {
+        "text": "What technique involves modifying the DNS server settings of a victim's device to redirect traffic to malicious sites?",
+        "options": [
+          {
+            "text": "DNS Spoofing",
+            "is_correct": true,
+            "explanation": "DNS Spoofing involves corrupting the DNS resolution process to redirect users to malicious websites instead of the intended destinations."
+          },
+          {
+            "text": "Phishing Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Man-in-the-Middle Attack",
+            "is_correct": false
+          },
+          {
+            "text": "ARP Poisoning",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "DNS Spoofing is a form of computer security hacking in which corrupt Domain Name System data is introduced into the DNS resolver's cache, causing the name server to return an incorrect result record."
+      },
+      {
+        "text": "Which type of malware is specifically designed to evade detection by antivirus software?",
+        "options": [
+          {
+            "text": "Ransomware",
+            "is_correct": false
+          },
+          {
+            "text": "Rootkit",
+            "is_correct": true,
+            "explanation": "Rootkits are designed to hide the existence of certain processes or programs from normal methods of detection and enable continued privileged access to a computer."
+          },
+          {
+            "text": "Spyware",
+            "is_correct": false
+          },
+          {
+            "text": "Trojan Horse",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Rootkits are a type of malware that are specifically designed to be hard to detect and remove, often hiding their presence or the presence of other malware."
+      },
+      {
+        "text": "In cybersecurity, what is 'steganography'?",
+        "options": [
+          {
+            "text": "Encrypting data to prevent unauthorized access",
+            "is_correct": false
+          },
+          {
+            "text": "The practice of hiding a file, message, image, or video within another file, message, image, or video",
+            "is_correct": true,
+            "explanation": "Steganography is the technique of hiding secret data within an ordinary, non-secret, file or message in order to avoid detection."
+          },
+          {
+            "text": "The study of methods for securing communication from third parties",
+            "is_correct": false
+          },
+          {
+            "text": "Creating digital signatures for data verification",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Steganography is used in cybersecurity to hide information within other non-secret text or data, which differs from cryptography."
+      },
+      {
+        "text": "What is the primary purpose of an Advanced Persistent Threat (APT)?",
+        "options": [
+          {
+            "text": "To disrupt services through DDoS attacks",
+            "is_correct": false
+          },
+          {
+            "text": "To gain unauthorized access to a network and remain undetected for a long period",
+            "is_correct": true,
+            "explanation": "APTs are conducted by an attacker who gains unauthorized access to a network and remains undetected for a long period, often with the goal of stealing data."
+          },
+          {
+            "text": "To encrypt data for ransom",
+            "is_correct": false
+          },
+          {
+            "text": "To perform a one-time theft of financial data",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Advanced Persistent Threats are sophisticated, long-term attacks that quietly infiltrate networks to steal information over extended periods."
+      },
+      {
+        "text": "What type of attack typically involves the broadcast of a network request to multiple computers, but changes the address from which the request came to the victim's?",
+        "options": [
+          {
+            "text": "Phishing Attack",
+            "is_correct": false
+          },
+          {
+            "text": "Smurf Attack",
+            "is_correct": true,
+            "explanation": "In a Smurf attack, the perpetrator sends a large number of ICMP echo (ping) traffic at IP broadcast addresses, all of it having a spoofed source address of a victim."
+          },
+          {
+            "text": "ARP Poisoning",
+            "is_correct": false
+          },
+          {
+            "text": "DNS Amplification",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Smurf attacks are a type of DDoS attack that uses large numbers of Internet Control Message Protocol (ICMP) packets with the victim's spoofed IP address."
+      },
+      {
+        "text": "Which type of social engineering attack uses phone calls as the primary means of deception?",
+        "options": [
+          {
+            "text": "Phishing",
+            "is_correct": false
+          },
+          {
+            "text": "Vishing",
+            "is_correct": true,
+            "explanation": "Vishing is a type of social engineering attack where the attacker uses the telephone system to trick the victim into revealing confidential information."
+          },
+          {
+            "text": "Spear Phishing",
+            "is_correct": false
+          },
+          {
+            "text": "Impersonation",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Vishing (voice phishing) is a form of criminal phone fraud, using social engineering over the telephone system to gain access to private personal and financial information for the purpose of financial reward."
+      },
+      {
+        "text": "What is a 'logic bomb' in the context of cybersecurity?",
+        "options": [
+          {
+            "text": "A piece of code intentionally inserted into a software system that will set off a malicious function when specified conditions are met",
+            "is_correct": true,
+            "explanation": "A logic bomb is a piece of code intentionally inserted into a software system, which will cause a malicious function to occur when certain conditions are met."
+          },
+          {
+            "text": "A type of DDoS attack that overloads a system",
+            "is_correct": false
+          },
+          {
+            "text": "A method of encrypting data",
+            "is_correct": false
+          },
+          {
+            "text": "A software that detects vulnerabilities",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Logic bombs are a form of sabotage, often included in a larger piece of malware, set to execute under specific conditions."
+      },
+      {
+        "text": "Which attack method involves injecting arbitrary code into a program and exploiting the execution of unintended instructions?",
+        "options": [
+          {
+            "text": "SQL Injection",
+            "is_correct": false
+          },
+          {
+            "text": "Buffer Overflow",
+            "is_correct": true,
+            "explanation": "Buffer overflow attacks occur when a program writes more data to a block of memory, or buffer, than it is allocated, leading to arbitrary code execution."
+          },
+          {
+            "text": "Cross-Site Scripting (XSS)",
+            "is_correct": false
+          },
+          {
+            "text": "Cross-Site Request Forgery (CSRF)",
+            "is_correct": false
+          }
+        ],
+        "difficulty": "Hard",
+        "explanation": "Buffer overflow is an anomaly that occurs when software writing data to a buffer overruns the buffer's boundary and overwrites adjacent memory."
+      }
+    ]
+  }
+  
