@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import DateField, FloatField, RadioField, StringField, SubmitField, TextAreaField, ValidationError, BooleanField
+from wtforms import DateField, FloatField, RadioField, StringField, SubmitField, TextAreaField, ValidationError, \
+    BooleanField
 from wtforms.validators import DataRequired, Length, Optional
+
 
 class QuestionForm(FlaskForm):
     choices = RadioField('Choose an answer', choices=[], validators=[DataRequired()])
@@ -16,7 +18,6 @@ class CertificationForm(FlaskForm):
     date_issued = DateField('Date Issued', format='%Y-%m-%d', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[Length(max=500)])
     submit = SubmitField('Add Certification')
-
 
 
 class ExamForm(FlaskForm):

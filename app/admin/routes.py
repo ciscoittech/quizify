@@ -8,15 +8,12 @@ from app.admin.forms import UpdateProfileForm, DeleteForm
 from app.admin.models import User, UserResponse
 
 
-
-
 @bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     enrolled_exams = current_user.enrolled_exams  # Assuming this field exists in your User model
     print(enrolled_exams)
     return render_template('home/profile.html', title='Profile', enrolled_exams=enrolled_exams)
-
 
 
 # Define a route for editing the user profile
@@ -59,6 +56,3 @@ def reports():
 
     return render_template('dashboard/dashboard.html', all_users=all_users, total_users=total_users,
                            users_today=users_today, delete_form=delete_form)
-
-
-

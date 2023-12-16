@@ -1,7 +1,7 @@
 from flask import Flask, session
 from flask_login import LoginManager
 import mongoengine as me
-from flask_session import Session
+# from flask_session import Session
 # import certifi
 from config import Config
 import os
@@ -13,12 +13,11 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     # Flask-Session configuration to use MongoDB
-    app.config['SESSION_TYPE'] = 'mongodb'
-    app.config['SESSION_MONGODB'] = me.connect('quizifyprov1', host='localhost', port=27017)
-    app.config['SESSION_MONGODB_DB'] = 'flask_session'
-    app.config['SESSION_MONGODB_COLLECT'] = 'sessions'
-
-
+    # app.config['SESSION_TYPE'] = 'mongodb'
+    # app.config['SESSION_MONGODB'] = me.connect('quizifyprov1', host='localhost', port=27017)
+    # app.config['SESSION_MONGODB_DB'] = 'flask_session'
+    # app.config['SESSION_MONGODB_COLLECT'] = 'sessions'
+    # Session(app)
 
     # Blueprints registration
     from app.auth import bp as auth_bp
